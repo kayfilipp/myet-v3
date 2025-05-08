@@ -5,15 +5,17 @@ from components import style
 from router import route
 import os 
 import json 
-
 import streamlit as st
 from streamlit_google_auth import Authenticate
+
+_CONFIG = json.load(open('config.json'))
+
 
 authenticator = Authenticate(
     secret_credentials_path='google_credentials.json',
     cookie_name='my_cookie_name',
     cookie_key='this_is_secret',
-    redirect_uri='http://localhost:8501',
+    redirect_uri=_CONFIG['root'],
 )
 
 # Check if the user is already authenticated
