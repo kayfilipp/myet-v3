@@ -40,7 +40,7 @@ def answer_question(st, assessment: Assessment, id, state_key):
 
 def render_questions(st: streamlit, assessment: Assessment):
     
-    options = list(range(0,6))
+    options = list(range(1,6))
 
     for question in assessment.current_questions:
         
