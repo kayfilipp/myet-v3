@@ -1,38 +1,15 @@
+# app.py
 import streamlit as st
-from components import header
-from components import auth
-from components import style
-from router import route
-import os 
-import json 
-import streamlit as st
-from streamlit_google_auth import Authenticate
+import squadbase.streamlit as sq
 
-_CONFIG = json.load(open('config.json'))
+user_info = sq.auth.get_user()
+st.write(f"Hello, {user_info['firstName']} {user_info['lastName']}")
 
-
-authenticator = Authenticate(
-    secret_credentials_path='google_credentials.json',
-    cookie_name='my_cookie_name',
-    cookie_key='this_is_secret',
-    redirect_uri=_CONFIG['root'],
-)
-
-# Check if the user is already authenticated
-authenticator.check_authentification()
-
-# Display the login button if the user is not authenticated
-if not st.session_state.get('connected', False):
-    authorization_url = authenticator.get_authorization_url()
-    st.markdown(f'[Login]({authorization_url})')
-    st.link_button('Login', authorization_url)
-# Display the user information and logout button if the user is authenticated
+if "admin" in user_info['roles']:
+  st.write("You are an admin")
 else:
-    st.image(st.session_state['user_info'].get('picture'))
-    st.write(f"Hello, {st.session_state['user_info'].get('name')}")
-    st.write(f"Your email is {st.session_state['user_info'].get('email')}")
-    if st.button('Log out'):
-        authenticator.logout()
+  st.write("You are not an admin")
+
 
 
 # st.set_page_config(layout="wide")
