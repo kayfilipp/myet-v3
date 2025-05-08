@@ -1,28 +1,14 @@
 import streamlit as st
-from components import header
-from components import auth
-from components import style
-from router import route
-import os 
-import json 
 
-st.set_page_config(layout="wide")
-_CONFIG = json.load(open('config.json'))
+def login_screen():
+    st.header("This app is private.")
+    st.subheader("Please log in.")
+    if st.button("Log in with Google"):
+        st.login()
 
-st.session_state['root_path'] = os.path.dirname(os.path.abspath(__file__))
-st.session_state['root_url'] = _CONFIG['root']
-st.session_state['questions_chunk_size'] = _CONFIG['questions_chunk_size']
-
-if not st.session_state.get('connected'):
-    print("checking cache..")
-    auth.check_cached_sessions(st)
-    auth.auth(st)
-
+if not st.user.get('is_logged_in'):
+    login_screen()
 else:
-    auth.save_user_and_session(st)
-
-    style.render(st)
-    header.header(st)
-    route(st)
-
-    print(st.session_state)
+    print(st.user.to_dict())
+    st.header(f"Welcome, {st.user.name}!")
+    st.button("Log out", on_click=st.logout)

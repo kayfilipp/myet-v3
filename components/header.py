@@ -14,7 +14,7 @@ def header(st: streamlit):
         st.title("MYET")
         st.write(f"Hi, {fname}!")
         if st.button("Logout", type="secondary"):
-            _logout(st)
+            st.logout()
 
         st.divider()
         href_button(st, f"{root}/?page=assessment", text="Take Assessment", fill_container=True)
