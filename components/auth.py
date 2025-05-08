@@ -64,14 +64,17 @@ def save_user_and_session(st):
 
 
     # save the user session for future reference.
-    anonymous_session_id = st.session_state.get("init",{}).get("ajs_anonymous_id", None)
+    init_state = st.sesion_state.get("init", None)
 
-    if anonymous_session_id and not st.session_state.get('user_session'):
-        print('saving user session...')
-        st.session_state['user_session'] = UserSession(anonymous_session_id)
-        st.session_state['user_session'].save(
-            user_id=user_info['id'],
-            email=user_info['email'],
-            firstname=user_info['given_name'],
-            lastname=user_info['family_name']
-        )          
+    if init_state:
+        anonymous_session_id = init_state.get("ajs_anonymous_id", None)
+
+        if anonymous_session_id and not st.session_state.get('user_session'):
+            print('saving user session...')
+            st.session_state['user_session'] = UserSession(anonymous_session_id)
+            st.session_state['user_session'].save(
+                user_id=user_info['id'],
+                email=user_info['email'],
+                firstname=user_info['given_name'],
+                lastname=user_info['family_name']
+            )          
