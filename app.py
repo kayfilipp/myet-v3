@@ -5,7 +5,7 @@ def login_screen():
     st.subheader("Please log in.")
     st.button("Log in with Google", on_click=st.login)
 
-if not st.user.is_logged_in:
+if not 'is_logged_in' in st.user:
     login_screen()
 else:
     st.header(f"Welcome, {st.user.name}!")
