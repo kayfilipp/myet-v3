@@ -1,0 +1,62 @@
+ID,body,facet,subtrait,weight
+16,I don't hold grudges.,Agreeableness,Forgivingness,0
+21,My friends tell me I'm too stubborn.,Agreeableness,Flexibility,0.2
+27,I've been told I'm too critical of others.,Agreeableness,Gentleness,0
+29,I usually forgive and forget when people hurt my feelings.,Agreeableness,Flexibility,0.3
+44,I get self-conscious in a place where I don't know how to act.,Agreeableness,Flexibility,0.1
+59,I rarely complain about things I can't change.,Agreeableness,Gentleness,0
+65,It takes a lot to make me lose patience with my colleagues at work.,Agreeableness,Patience,0.1
+70,I am very picky about the people I date.,Agreeableness,Gentleness,0.1
+71,"I can find my way around any situation, no matter how new or exotic it might be.",Agreeableness,Flexibility,0.2
+14,I consider all possible outcomes before I make major life decisions.,Conscientiousness,Prudence,0.1
+15,I finish everything I start.,Conscientiousness,Diligence,0.1
+24,I check my work repeatedly in case there are any mistakes.,Conscientiousness,Perfectionism,0
+26,I clean my home or office frequently.,Conscientiousness,Organization,0
+34,"During vacations, I schedule my time carefully to maximize my enjoyment.",Conscientiousness,Prudence,0
+38,I plan ahead to avoid scrambling at the last minute.,Conscientiousness,Prudence,0.1
+39,I've been told I have a quick temper.,Conscientiousness,Prudence,0
+45,I make decisions based on my instincts.,Conscientiousness,Prudence,0.3
+48,I prefer to be around spontaneous people.,Conscientiousness,Prudence,0.1
+66,"If I get a new idea for a project at work, I jump on it right away.",Conscientiousness,Prudence,0.3
+67,I work hard to make sure my work is always perfect.,Conscientiousness,Perfectionism,0
+69,I value keeping my emotions under control in difficult situations.,Emotionality,Sentimentality,0.1
+19,I can't help worrying about little things.,Emotionality,Anxiety,0
+23,"If I experience something painful, I need someone to comfort me.",Emotionality,Dependence,0.4
+31,I'm not afraid of anything.,Emotionality,Fearfulness,0.1
+37,"If I see someone cry, it makes me want to cry too.",Emotionality,Sentimentality,0
+47,Reassurance is important to me when I'm working on big projects.,Emotionality,Dependence,0.3
+70,I obsess too much about things I can't change.,Emotionality,Anxiety,0
+54,It bothers me if someone doesn't like me.,Emotionality,Dependence,0
+56,It doesn't faze me if small things go wrong as long as the important stuff is ok.,Emotionality,Anxiety,0
+57,I enjoy taking care of other people's needs.,Emotionality,Dependence,0.1
+13,I'm uncomfortable being the center of attention.,Extroversion,Social Boldness,0.1
+20,I have a small circle of really close friends.,Extroversion,Sociability,0
+22,I don't like small talk.,Extroversion,Sociability,0
+28,I'm always up for social activities.,Extroversion,Liveliness,0.1
+40,I always tell people when they irritate me.,Extroversion,Expressiveness,0.3
+43,I rarely express my views in group settings or meetings.,Extroversion,Social Boldness,0.1
+50,"When I join a new group, I fit in right away.",Extroversion,Social Boldness,0.1
+60,"I'm really good at talking to people about their interests, whatever they might be.",Extroversion,Sociability,0.2
+61,I am an exceptional leader.,Extroversion,Social Boldness,0.1
+18,I have ambitious work goals.,Honesty-Humility,Modesty,0
+25,Money is not important as long as you have enough to live well.,Honesty-Humility,Greed Avoidance,0
+32,"If there was no way I could get caught, I would steal a million dollars.",Honesty-Humility,Fairness,0.1
+36,"If I knew it would work, I'd flatter my boss to get a promotion or raise.",Honesty-Humility,Sincerity,0.1
+69,"If I want something from a person I dislike, I'd be nice to them in order to get it.",Honesty-Humility,Sincerity,0.1
+46,I'm a regular person just like everyone else.,Honesty-Humility,Modesty,0
+49,I would describe myself as very talented.,Honesty-Humility,Modesty,0
+52,My ideas are too complex for regular people to understand.,Honesty-Humility,Modesty,0
+58,I can adapt my personality to different situations in order to get what I want.,Honesty-Humility,Sincerity,0.5
+62,I return extra change if the cashier makes a mistake.,Honesty-Humility,Fairness,0.1
+63,I've accomplished more than the average person my age.,Honesty-Humility,Modesty,0.1
+17,I feel satisfied with myself overall.,,,0
+35,Most people like my personality.,,,0
+30,I wouldn't enjoy visiting an art gallery.,Openness to Experience,Aesthetic Appreciation,0
+33,Friends would never describe me as conventional.,Openness to Experience,Unconventionality,0.1
+42,I enjoy learning about the history and politics of other countries.,Openness to Experience,Inquisitiveness,0.1
+51,I've gotten in trouble for pursuing my own ideas without discussing them first with my boss or colleagues.,Openness to Experience,Unconventionality,0.1
+55,I'm always thinking of better ways to do things.,Openness to Experience,Creativity,0.3
+64,My mind races with new ideas when I lie in bed and try to sleep.,Openness to Experience,Creativity,0.1
+68,I like taking things apart to see how they work.,Openness to Experience,Inquisitiveness,0.1
+41,"I would go with my friends to do something crazy like skydiving, but I'd never do it myself.",Openness to Experience,Unconventionality,0.1
+53,I like to read reviews of movies and plays to understand the underlying messages.,Openness to Experience,Inquisitiveness,0.1

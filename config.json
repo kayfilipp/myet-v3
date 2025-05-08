@@ -1,0 +1,7 @@
+{
+    "db-name": "myet.db",
+    "session_lookup_on": "session_id",
+    "session_timeout_ms": 3600000,
+    "root": "http://localhost:8501",
+    "questions_chunk_size": 5
+}
