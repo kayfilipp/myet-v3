@@ -13,9 +13,6 @@ st.session_state['root_path'] = os.path.dirname(os.path.abspath(__file__))
 st.session_state['root_url'] = _CONFIG['root']
 st.session_state['questions_chunk_size'] = _CONFIG['questions_chunk_size']
 
-st.header("Hi.")
-st.stop()
-
 if not st.session_state.get('connected'):
     print("checking cache..")
     auth.check_cached_sessions(st)
