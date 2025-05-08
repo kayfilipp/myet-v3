@@ -24,11 +24,9 @@ def render(st: streamlit):
     elif not assessment.started:
 
         num_questions = len(assessment.questions)
-        st.text(f"This assessment will consist of {num_questions} questions. Please do not refresh or close the page.")
-        
-        if st.button("Begin"):
-            assessment.start() 
-            st.rerun()
+        st.text(f"This assessment will consist of {num_questions} questions. Please do not refresh or close the page.")        
+        st.button("Start", on_click=assessment.start)
+
     else:
 
         # the only other option is that the assessment hasn't been completed.
