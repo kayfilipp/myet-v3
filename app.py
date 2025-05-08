@@ -10,4 +10,5 @@ if not 'is_logged_in' in st.user:
 else:
     print(st.user.__dict__)
     st.header(f"Welcome, {st.user}!")
-    st.button("Log out", on_click=st.logout)
+    if st.button("Log out"):
+        st.logout()
