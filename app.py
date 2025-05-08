@@ -19,10 +19,12 @@ if not st.session_state.get('connected'):
 
 if not st.session_state.get('connected'):
     auth.auth(st)
-    st.stop()
 
-auth.save_user_and_session(st)
+else:
+    auth.save_user_and_session(st)
 
-style.render(st)
-header.header(st)
-route(st)
+    style.render(st)
+    header.header(st)
+    route(st)
+
+    print(st.session_state)
