@@ -8,5 +8,6 @@ def login_screen():
 if not 'is_logged_in' in st.user:
     login_screen()
 else:
+    print(st.user.__dict__)
     st.header(f"Welcome, {st.user.name}!")
     st.button("Log out", on_click=st.logout)
