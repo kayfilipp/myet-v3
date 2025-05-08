@@ -29,7 +29,6 @@ def render(st: streamlit):
         
         if st.button("Begin"):
             assessment.start() 
-            st.rerun()
         
         st.stop() 
 
