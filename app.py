@@ -16,8 +16,6 @@ st.session_state['questions_chunk_size'] = _CONFIG['questions_chunk_size']
 if not st.session_state.get('connected'):
     print("checking cache..")
     auth.check_cached_sessions(st)
-
-if not st.session_state.get('connected'):
     auth.auth(st)
 
 else:
