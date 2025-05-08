@@ -20,21 +20,20 @@ def render(st: streamlit):
         st.caption("Here's how you did.")
         
         st.dataframe(assessment.results, use_container_width=False)
-        st.stop()
 
-    if not assessment.started:
+    elif not assessment.started:
 
         num_questions = len(assessment.questions)
         st.text(f"This assessment will consist of {num_questions} questions. Please do not refresh or close the page.")
         
         if st.button("Begin"):
             assessment.start() 
-        
-        st.stop() 
+            st.rerun()
+    else:
 
-    # the only other option is that the assessment hasn't been completed.
-    st.caption("1 = Strongly Disagree, 5 = Strongly Agree")
-    render_questions(st, assessment)
+        # the only other option is that the assessment hasn't been completed.
+        st.caption("1 = Strongly Disagree, 5 = Strongly Agree")
+        render_questions(st, assessment)
 
 
 def answer_question(st, assessment: Assessment, id, state_key):
