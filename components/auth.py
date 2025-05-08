@@ -7,7 +7,7 @@ def check_cached_sessions(st):
     anonymous_session_id = st.session_state.get("init", None)
 
     if not anonymous_session_id:
-        return 
+        st.stop() 
     
     anonymous_session_id = anonymous_session_id.get("ajs_anonymous_id", None)
 
@@ -17,7 +17,7 @@ def check_cached_sessions(st):
     sesh_user = sesh.retreive()
     
     if not sesh_user:
-        return
+        st.stop()
     
     print("found user session!")
     # touch the session to keep it alive.
@@ -50,7 +50,7 @@ def save_user_and_session(st):
 
     # update user in db or crate if we have user info.
     if 'user_info' not in st.session_state:
-        return
+        st.stop()
 
     user_info = st.session_state['user_info']
 
