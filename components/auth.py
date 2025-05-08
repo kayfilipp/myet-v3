@@ -64,7 +64,7 @@ def save_user_and_session(st):
 
 
     # save the user session for future reference.
-    init_state = st.sesion_state.get("init", None)
+    init_state = st.session_state.get("init", None)
 
     if init_state:
         anonymous_session_id = init_state.get("ajs_anonymous_id", None)
