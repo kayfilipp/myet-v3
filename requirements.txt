@@ -1,5 +1,3 @@
 streamlit
 pandas
-google-auth
-google-auth-oauthlib
-streamlit-google-auth
+authlib
