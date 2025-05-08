@@ -20,7 +20,7 @@ def render(st: streamlit):
         st.caption("Here's how you did.")
         
         st.dataframe(assessment.results, use_container_width=False)
-        return
+        st.stop()
 
     if not assessment.started:
 
@@ -31,7 +31,7 @@ def render(st: streamlit):
             assessment.start() 
             st.rerun()
         
-        return 
+        st.stop() 
 
     # the only other option is that the assessment hasn't been completed.
     st.caption("1 = Strongly Disagree, 5 = Strongly Agree")
