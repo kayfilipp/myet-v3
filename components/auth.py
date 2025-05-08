@@ -6,27 +6,25 @@ from models.UserSession import UserSession
 def check_cached_sessions(st):
     anonymous_session_id = st.session_state.get("init", None)
 
-    if not anonymous_session_id:
-        st.stop() 
+    if anonymous_session_id: 
     
-    anonymous_session_id = anonymous_session_id.get("ajs_anonymous_id", None)
+        anonymous_session_id = anonymous_session_id.get("ajs_anonymous_id", None)
 
-    sesh = UserSession(anonymous_session_id)
+        sesh = UserSession(anonymous_session_id)
 
-    # try to find a user based on the session.
-    sesh_user = sesh.retreive()
-    
-    if not sesh_user:
-        st.stop()
-    
-    print("found user session!")
-    # touch the session to keep it alive.
-    sesh.touch()
+        # try to find a user based on the session.
+        sesh_user = sesh.retreive()
+        
+        if sesh_user:
+            
+            print("found user session!")
+            # touch the session to keep it alive.
+            sesh.touch()
 
-    # alter session state by creating a user and checking the connected box.
-    st.session_state['connected'] = True 
-    st.session_state['user'] = sesh_user
-    st.session_state['user_session'] = sesh
+            # alter session state by creating a user and checking the connected box.
+            st.session_state['connected'] = True 
+            st.session_state['user'] = sesh_user
+            st.session_state['user_session'] = sesh
 
 def auth(st):
 
@@ -50,7 +48,7 @@ def save_user_and_session(st):
 
     # update user in db or crate if we have user info.
     if 'user_info' not in st.session_state:
-        st.stop()
+        return
 
     user_info = st.session_state['user_info']
 
