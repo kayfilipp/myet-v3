@@ -16,7 +16,7 @@ st.divider()
 _c = st.columns([1,1,8])
 
 with _c[0]:
-    st.caption(user.name)
+    st.subheader(user.name)
     st.image(user.get("picture", ".\assets\default_profile.jpg"))
 
 st.write(user)
