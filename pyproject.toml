@@ -8,5 +8,5 @@ dependencies = [
     "auth0-python>=4.8.1",
     "authlib>=1.4.1",
     "plotly>=6.0.0",
-    "streamlit>=1.42.2",
+    "streamlit",
 ]
