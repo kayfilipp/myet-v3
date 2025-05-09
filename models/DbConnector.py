@@ -11,7 +11,7 @@ class DbConnector:
         con.row_factory = sqlite3.Row
         cur = con.cursor()
 
-        cur.execute(query, params=params)
+        cur.execute(query,params)
 
         if commit:
             con.commit()
