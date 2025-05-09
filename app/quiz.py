@@ -84,6 +84,7 @@ elif not assessment.started:
         assessment.answered_questions = assessment.questions
         assessment.questions = []
         assessment.submit()
+        st.rerun()
 
 else:
 
