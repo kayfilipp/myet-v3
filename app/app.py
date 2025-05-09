@@ -13,13 +13,10 @@ with st.sidebar:
 
 st.divider()
 
-_c = st.columns([1,1,8])
 
-with _c[0]:
-    st.subheader(user.name)
-    st.image(user.get("picture", ".\assets\default_profile.jpg"))
+st.subheader(user.name)
+st.image(user.get("picture", ".\assets\default_profile.jpg"))
+st.page_link("./app/assessment.py", label="Take Assessment")
 
-with _c[1]:
-    st.page_link("app/admin.py", label="Admin")
 
 st.write(user)
