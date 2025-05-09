@@ -53,7 +53,7 @@ else:
 
     # add a logout button to the sidebar
     with st.sidebar:
-        st.header(f"Logged in with {user.email}")
+        st.header(f"Logged in with {user['email']}")
         if st.button("🔓 Logout"):
             st.logout()
 
