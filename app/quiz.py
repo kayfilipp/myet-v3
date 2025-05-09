@@ -76,5 +76,8 @@ elif not assessment.started:
 else:
 
     # the only other option is that the assessment hasn't been completed.
+    with st.popover("Quit"):
+        st.caption("Are you sure? All progress will be lost.")
+
     st.caption("1 = Strongly Disagree, 5 = Strongly Agree")
     render_questions(st, assessment)
