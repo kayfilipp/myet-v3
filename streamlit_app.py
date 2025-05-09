@@ -14,12 +14,12 @@ admin_page = st.Page(
 )
 
 # Enables switch_page behaviour
-if not st.experimental_user.is_logged_in:
+if not st.user.is_logged_in:
     pg = st.navigation(
         [landing_page],
         position="hidden",
     )
-elif st.experimental_user.email == st.secrets["admin_email"]:
+elif st.user.email == st.secrets["admin_email"]:
     pg = st.navigation(
         [app_page, admin_page],
     )

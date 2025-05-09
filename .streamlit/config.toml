@@ -1,3 +1,7 @@
 [theme]
 base="light"
 primaryColor="#174c4f"
+
+[server]
+headless = true
+runOnSave = true
