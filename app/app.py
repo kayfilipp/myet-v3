@@ -6,11 +6,6 @@ user = st.experimental_user
 if not user["email_verified"]:
     st.warning("Please verify your email and login back to unlock all features")
 
-with st.sidebar:
-    st.header(f"Logged in with {user.email}")
-    if st.button("🔓 Logout"):
-        st.logout()
-
 st.divider()
 
 

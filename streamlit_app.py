@@ -17,10 +17,12 @@ about_page = st.Page("./app/about.py", title="About", icon=":material/info:")
 
 # Enables switch_page behaviour
 if not st.experimental_user.is_logged_in:
+
     pg = st.navigation(
         [landing_page],
         position="hidden",
     )
+
 else:
 
     pages = [app_page, assessment_page, about_page]
@@ -49,5 +51,12 @@ else:
 
         st.session_state['User'] = user
 
+    # add a logout button to the sidebar
+    with st.sidebar:
+        st.header(f"Logged in with {user.email}")
+        if st.button("🔓 Logout"):
+            st.logout()
+
 # Head to first page of navigation
 pg.run()
+
