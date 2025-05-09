@@ -68,8 +68,11 @@ assessment = st.session_state.get('assessment')
 if assessment.completed:
     st.subheader("Nice Job!")
     st.caption("Here's how you did.")
-    
     st.dataframe(assessment.results, use_container_width=False)
+
+    if st.button("Restart"):
+        del st.session_state['assessment']
+        st.rerun()
 
 elif not assessment.started:
 
