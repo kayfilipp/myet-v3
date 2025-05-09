@@ -1,6 +1,9 @@
 import streamlit as st 
 from models.Assessment import Assessment
 
+def progress_bar(st, assessment: Assessment):
+    progress = len(assessment.answered_questions) / ( len(assessment.answered_questions) + len(assessment.questions) )
+    st.progress(progress, "Asessment Progress")
 
 def answer_question(st, assessment: Assessment, id, state_key):
     assessment.answer_question(id=id, answer=st.session_state[state_key])
@@ -83,4 +86,5 @@ else:
             st.rerun()
 
     st.caption("1 = Strongly Disagree, 5 = Strongly Agree")
+    progress_bar(st, assessment)
     render_questions(st, assessment)
