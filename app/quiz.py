@@ -54,7 +54,7 @@ user = st.session_state['User']
 
 if not st.session_state.get('assessment'):
     st.session_state['assessment'] = Assessment(
-        user=st.session_state['user'], 
+        user=user, 
         limit=None, 
         chunk_size=st.secrets['questions_chunk_size'])
 
