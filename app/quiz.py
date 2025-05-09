@@ -58,23 +58,23 @@ if not st.session_state.get('assessment'):
         limit=None, 
         chunk_size=st.secrets['questions_chunk_size'])
 
-    assessment = st.session_state.get('assessment')
+assessment = st.session_state.get('assessment')
 
-    # if assessment completed, print some stuff out 
-    if assessment.completed:
-        st.subheader("Nice Job!")
-        st.caption("Here's how you did.")
-        
-        st.dataframe(assessment.results, use_container_width=False)
+# if assessment completed, print some stuff out 
+if assessment.completed:
+    st.subheader("Nice Job!")
+    st.caption("Here's how you did.")
+    
+    st.dataframe(assessment.results, use_container_width=False)
 
-    elif not assessment.started:
+elif not assessment.started:
 
-        num_questions = len(assessment.questions)
-        st.text(f"This assessment will consist of {num_questions} questions. Please do not refresh or close the page.")        
-        st.button("Start", on_click=assessment.start)
+    num_questions = len(assessment.questions)
+    st.text(f"This assessment will consist of {num_questions} questions. Please do not refresh or close the page.")        
+    st.button("Start", on_click=assessment.start)
 
-    else:
+else:
 
-        # the only other option is that the assessment hasn't been completed.
-        st.caption("1 = Strongly Disagree, 5 = Strongly Agree")
-        render_questions(st, assessment)
+    # the only other option is that the assessment hasn't been completed.
+    st.caption("1 = Strongly Disagree, 5 = Strongly Agree")
+    render_questions(st, assessment)
