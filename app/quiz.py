@@ -73,7 +73,7 @@ if assessment.completed:
 elif not assessment.started:
 
     num_questions = len(assessment.questions)
-    st.text(f"This assessment will consist of {num_questions} questions. Please do not refresh or close the page.")        
+    st.text(f"This assessment will consist of {num_questions} questions. Feel free to explore our website and take breaks - your progress will be saved.")        
     st.button("Start", on_click=assessment.start)
 
 else:
