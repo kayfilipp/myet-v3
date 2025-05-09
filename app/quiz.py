@@ -29,7 +29,7 @@ def render_questions(st, assessment: Assessment):
     
     with _c[0]:
 
-        if st.button("previous", icon=":material/arrow_back_ios:", disabled=(not assessment.has_previous)):
+        if st.button("", icon=":material/arrow_back_ios:", disabled=(not assessment.has_previous)):
             assessment.last_n()
             st.rerun()
 
@@ -40,7 +40,7 @@ def render_questions(st, assessment: Assessment):
                 assessment.submit()
                 st.rerun()
         else:
-            if st.button("next", icon=":material/arrow_forward_ios:", disabled=(incomplete)):
+            if st.button("", icon=":material/arrow_forward_ios:", disabled=(incomplete)):
                 assessment.next_n()
                 st.rerun()
 
