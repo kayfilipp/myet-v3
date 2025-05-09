@@ -14,7 +14,6 @@ app_page = st.Page("./app/app.py", title="Home", icon=":material/home:")
 admin_page = st.Page("./app/admin.py", title="Admin", icon=":material/admin_panel_settings:")
 assessment_page = st.Page("./app/quiz.py", title="Assessment", icon=":material/edit:")
 
-
 # Enables switch_page behaviour
 if not st.experimental_user.is_logged_in:
     pg = st.navigation(

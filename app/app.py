@@ -17,6 +17,3 @@ st.divider()
 st.subheader(user.name)
 st.image(user.get("picture", ".\assets\default_profile.jpg"))
 st.page_link("./app/quiz.py", label="Take Assessment")
-
-st.write("User")
-st.write(st.session_state['User'].__dict__)
