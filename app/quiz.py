@@ -78,6 +78,9 @@ else:
     # the only other option is that the assessment hasn't been completed.
     with st.popover("Quit"):
         st.caption("Are you sure? All progress will be lost.")
+        if st.button("Yes"):
+            del st.session_state['assessment']
+            st.rerun(scope="fragment")
 
     st.caption("1 = Strongly Disagree, 5 = Strongly Agree")
     render_questions(st, assessment)
