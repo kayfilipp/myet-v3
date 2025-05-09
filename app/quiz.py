@@ -1,5 +1,5 @@
 import streamlit as st 
-from models import Assessment
+from models.Assessment import Assessment
 
 
 def answer_question(st, assessment: Assessment, id, state_key):
