@@ -1,6 +1,8 @@
 import streamlit as st 
 from models.Assessment import Assessment
 from random import randint
+import numpy as np
+import matplotlib.pyplot as plt
 
 def progress_bar(st, assessment: Assessment):
     progress = len(assessment.answered_questions) / ( len(assessment.answered_questions) + len(assessment.questions) )
@@ -48,6 +50,39 @@ def render_questions(st, assessment: Assessment):
                 assessment.next_n()
                 st.rerun()
 
+def render_assessment_score_radial_chart(st, scores: dict):
+
+    # Extract labels and values
+    labels = list(scores.keys())
+    values = list(scores.values())
+
+    # Close the shape by repeating the first value
+    values.append(values[0])
+    labels.append(labels[0])
+
+    # Define angles for the radar chart
+    angles = np.linspace(0, 2 * np.pi, len(labels), endpoint=False).tolist()
+    angles.append(angles[0])  # Close the shape
+
+    # Create the figure
+    fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
+
+    # Plot the data
+    ax.plot(angles, values, color='b', linewidth=2, linestyle='solid')
+    ax.fill(angles, values, color='b', alpha=0.3)  # Fill the area
+
+    # Set labels
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels(labels)
+
+    # Adjust aesthetics
+    ax.set_yticklabels([])
+    ax.set_ylim(0, 5)  # Adjust range based on expected values
+
+    # Show the plot
+    st.title("Your MYET Traits")
+    st.pyplot(fig)
+
 # ****************************************************************************************************************************************************** #
 
 st.title("The MYET Assessment")
@@ -69,6 +104,7 @@ if assessment.completed:
     st.subheader("Nice Job!")
     st.caption("Here's how you did.")
     st.dataframe(assessment.results, use_container_width=False)
+    render_assessment_score_radial_chart(st, assessment.results)
 
     if st.button("Restart"):
         del st.session_state['assessment']
