@@ -12,4 +12,9 @@ with st.sidebar:
 
 st.divider()
 
+_c = st.columns([1,1,8])
+
+with _c[0]:
+    st.image(st.experimental_user.get("picture", ".\assets\default_profile.jpg"))
+
 st.write(st.experimental_user)
