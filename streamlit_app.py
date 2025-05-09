@@ -8,11 +8,9 @@ st.set_page_config(
 )
 
 # Define app pages
-landing_page = st.Page("./app/landing.py", title="Landing", icon=":material/home:")
-app_page = st.Page("./app/app.py", title="App", icon=":material/play_arrow:")
-admin_page = st.Page(
-    "./app/admin.py", title="Admin", icon=":material/admin_panel_settings:"
-)
+landing_page = st.Page("./app/landing.py", title="Welcome", icon=":material/menu:")
+app_page = st.Page("./app/app.py", title="Home", icon=":material/home:")
+admin_page = st.Page("./app/admin.py", title="Admin", icon=":material/admin_panel_settings:")
 
 # Enables switch_page behaviour
 if not st.experimental_user.is_logged_in:

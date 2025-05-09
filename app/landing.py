@@ -13,7 +13,5 @@ if st.button(
     key="checkout-button",
     use_container_width=False   ,
 ):
-    # st.login("google")
     st.login("auth0")
 
-# st.html("./styles.html")
