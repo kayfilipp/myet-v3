@@ -1,5 +1,6 @@
 import streamlit as st 
 from models.Assessment import Assessment
+from random import randint
 
 def progress_bar(st, assessment: Assessment):
     progress = len(assessment.answered_questions) / ( len(assessment.answered_questions) + len(assessment.questions) )
@@ -58,7 +59,7 @@ user = st.session_state['User']
 if not st.session_state.get('assessment'):
     st.session_state['assessment'] = Assessment(
         user=user, 
-        limit=10, 
+        limit=None, 
         chunk_size=st.secrets['questions_chunk_size'])
 
 assessment = st.session_state.get('assessment')
@@ -75,6 +76,14 @@ elif not assessment.started:
     num_questions = len(assessment.questions)
     st.text(f"This assessment will consist of {num_questions} questions. Feel free to explore our website and take breaks - your progress will be saved.")        
     st.button("Start", on_click=assessment.start)
+
+    # add a demo button because I'm lazy.
+    if st.button("Demo"):
+        for question in assessment.questions:
+            question.answer = randint(1,5)
+        assessment.answered_questions = assessment.questions
+        assessment.questions = []
+        assessment.submit()
 
 else:
 
