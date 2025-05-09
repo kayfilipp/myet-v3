@@ -1,0 +1,5 @@
+{
+    "db-name": "myet.db",
+    "session_lookup_on": "session_id",
+    "questions_chunk_size": 5
+}

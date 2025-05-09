@@ -1,4 +1,5 @@
 import streamlit as st
+from models.User import User
 
 st.set_page_config(
     page_title="MYET",
@@ -30,6 +31,23 @@ else:
         pages,
         position="sidebar",
     )
+
+    # save the user as a User object if they don't already exist.
+    if not st.session_state.get('User'):
+        user = st.experimental_user
+
+        firstname = user.get('given_name') if user.get('given_name') else user.get('name')
+        lastname = user.get('family_name')
+
+        user = User(
+            auth_id=user['email'],
+            firstname=firstname,
+            lastname=lastname,
+            email=user['email']
+        )
+        user.save()
+
+        st.session_state['User'] = user
 
 # Head to first page of navigation
 pg.run()
