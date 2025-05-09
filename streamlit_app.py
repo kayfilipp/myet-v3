@@ -35,21 +35,22 @@ else:
     )
 
     # save the user as a User object if they don't already exist.
+    user = st.experimental_user
+
     if not st.session_state.get('User'):
-        user = st.experimental_user
 
         firstname = user.get('given_name') if user.get('given_name') else user.get('name')
         lastname = user.get('family_name')
 
-        user = User(
+        _user = User(
             auth_id=user['email'],
             firstname=firstname,
             lastname=lastname,
             email=user['email']
         )
-        user.save()
+        _user.save()
 
-        st.session_state['User'] = user
+        st.session_state['User'] = _user
 
     # add a logout button to the sidebar
     with st.sidebar:
