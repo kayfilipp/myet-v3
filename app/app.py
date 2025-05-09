@@ -19,4 +19,7 @@ with _c[0]:
     st.subheader(user.name)
     st.image(user.get("picture", ".\assets\default_profile.jpg"))
 
+with _c[1]:
+    st.page_link("app/admin.py", label="Admin")
+
 st.write(user)
