@@ -80,7 +80,7 @@ else:
         st.caption("Are you sure? All progress will be lost.")
         if st.button("Yes"):
             del st.session_state['assessment']
-            st.rerun(scope="fragment")
+            st.rerun()
 
     st.caption("1 = Strongly Disagree, 5 = Strongly Agree")
     render_questions(st, assessment)
