@@ -85,6 +85,6 @@ else:
             del st.session_state['assessment']
             st.rerun()
 
-    st.caption("1 = Strongly Disagree, 5 = Strongly Agree")
     progress_bar(st, assessment)
     render_questions(st, assessment)
+    st.caption("1 = Strongly Disagree, 5 = Strongly Agree")
