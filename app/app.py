@@ -3,7 +3,7 @@ import streamlit as st
 st.title("Welcome to your MYET Account!")
 user = st.experimental_user
 
-if not st.user["email_verified"]:
+if not user["email_verified"]:
     st.warning("Please verify your email and login back to unlock all features")
 
 with st.sidebar:
