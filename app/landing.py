@@ -11,9 +11,9 @@ if st.button(
     "Log In",
     type="primary",
     key="checkout-button",
-    use_container_width=True,
+    use_container_width=False   ,
 ):
     # st.login("google")
     st.login("auth0")
 
-st.html("./styles.html")
+# st.html("./styles.html")
