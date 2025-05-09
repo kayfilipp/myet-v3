@@ -23,7 +23,7 @@ if not st.experimental_user.is_logged_in:
     )
 else:
 
-    pages = [app_page, assessment_page]
+    pages = [app_page, assessment_page, about_page]
     if st.experimental_user.email == st.secrets["admin_email"]:
         pages += [admin_page]
 
