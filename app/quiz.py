@@ -85,6 +85,8 @@ if assessment.completed:
             st.rerun()
 
     with c[1]:
+        st.subheader("Visual Breakdown")
+        st.caption("Who doesn't like pictures?")
         score_chart.render(st, assessment.results)
 
 elif not assessment.started:
