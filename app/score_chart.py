@@ -71,14 +71,14 @@ def render(st: streamlit, scores: dict):
                         r: {{
                             suggestedMin: 0,
                             suggestedMax: 5,
-                            ticks: {{
-                                display: false  // Hide tick labels
-                            }},
                             grid: {{
-                                display: false  // Hide grid lines
+                                color: "white"  // Set grid lines to white
                             }},
                             angleLines: {{
-                                display: false  // Hide angle lines
+                                color: "white"  // Set angle lines to white
+                            }},
+                            ticks: {{
+                                display: false  // Hide tick labels
                             }}
                         }}
                     }}
