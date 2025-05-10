@@ -88,6 +88,8 @@ if assessment.completed:
         st.subheader("Understanding your Results")
         trait_descriptions.render(st)
 
+    st.divider()
+
     if st.button("Restart", use_container_width=True):
         del st.session_state['assessment']
         st.rerun()
