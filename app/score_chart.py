@@ -49,7 +49,6 @@ def render(st: streamlit, scores: dict):
                     maintainAspectRatio: false,  // Allow custom sizing
                     layout: {{
                         padding: {{
-                            top: 10,  // Reduce top padding
                             bottom: 40,  // Keep bottom padding for labels
                             left: 40,  // Keep left padding for labels
                             right: 40  // Keep right padding for labels
@@ -58,14 +57,6 @@ def render(st: streamlit, scores: dict):
                     plugins: {{
                         legend: {{
                             display: false  // Hide the legend
-                        }},
-                        title: {{
-                            display: true,  // Show title
-                            text: "Your Scores",  // Title text
-                            font: {{
-                                size: 24  // Set font size
-                            }},
-                            "color": "white"
                         }}
                     }},
                     scales: {{
