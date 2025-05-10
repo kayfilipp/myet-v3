@@ -59,6 +59,13 @@ def render(st: streamlit, scores: dict):
                         legend: {{
                             display: false  // Hide the legend
                         }}
+                        title: {{
+                            display: true,  // Show title
+                            text: "Your Scores",  // Title text
+                            font: {{
+                                size: 18  // Set font size
+                            }}
+                        }}
                     }},
                     scales: {{
                         r: {{
@@ -83,5 +90,4 @@ def render(st: streamlit, scores: dict):
     """
 
     # Embed the chart in Streamlit with a larger canvas
-    st.title("Personality Traits Radar Chart")
     st.components.v1.html(html_code, height=550, width=550)  # Increase iframe size
