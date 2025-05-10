@@ -7,12 +7,18 @@ def render(st: streamlit, scores: dict):
     labels = list(scores.keys())
     values = list(scores.values())
 
-    # HTML & JavaScript for Chart.js
+    # HTML & JavaScript for Chart.js with smaller size
     html_code = f"""
     <!DOCTYPE html>
     <html>
     <head>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            canvas {{
+                width: 300px !important;  /* Set smaller width */
+                height: 300px !important; /* Set smaller height */
+            }}
+        </style>
     </head>
     <body>
         <canvas id="spiderChart"></canvas>
@@ -31,6 +37,8 @@ def render(st: streamlit, scores: dict):
                     }}]
                 }},
                 options: {{
+                    responsive: false,  // Prevent auto-resizing
+                    maintainAspectRatio: false,  // Allow custom sizing
                     scales: {{
                         r: {{
                             suggestedMin: 0,
@@ -44,6 +52,6 @@ def render(st: streamlit, scores: dict):
     </html>
     """
 
-    # Embed the chart in Streamlit
+    # Embed the chart in Streamlit with a smaller height
     st.title("Personality Traits Radar Chart")
-    st.components.v1.html(html_code)
+    st.components.v1.html(html_code, height=350)  # Reduce height
