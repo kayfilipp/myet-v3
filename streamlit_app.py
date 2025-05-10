@@ -9,7 +9,7 @@ st.set_page_config(
 )
 
 # styles
-st.components.v1.html("styles.html")
+st.html("./styles.html")
 
 # Define app pages
 landing_page = st.Page("./app/landing.py", title="Welcome", icon=":material/menu:")
