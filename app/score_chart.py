@@ -5,7 +5,7 @@ def render(st: streamlit, scores: dict):
     labels = list(scores.keys())
     values = list(scores.values())
 
-    # HTML & JavaScript for Chart.js with extra padding for labels
+    # HTML & JavaScript for Chart.js with reduced top padding
     html_code = f"""
     <!DOCTYPE html>
     <html>
@@ -18,7 +18,7 @@ def render(st: streamlit, scores: dict):
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                padding: 40px; /* Add more padding to prevent cropping */
+                padding: 20px 40px 40px 40px; /* Reduce top padding */
             }}
             canvas {{
                 width: 350px !important;  /* Keep chart size small */
@@ -49,10 +49,10 @@ def render(st: streamlit, scores: dict):
                     maintainAspectRatio: false,  // Allow custom sizing
                     layout: {{
                         padding: {{
-                            top: 40,  // Extra space for top labels
-                            bottom: 40,  // Extra space for bottom labels
-                            left: 40,  // Extra space for left labels
-                            right: 40  // Extra space for right labels
+                            top: 10,  // Reduce top padding
+                            bottom: 40,  // Keep bottom padding for labels
+                            left: 40,  // Keep left padding for labels
+                            right: 40  // Keep right padding for labels
                         }}
                     }},
                     plugins: {{
