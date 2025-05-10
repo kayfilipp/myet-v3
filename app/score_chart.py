@@ -64,7 +64,8 @@ def render(st: streamlit, scores: dict):
                             text: "Your Scores",  // Title text
                             font: {{
                                 size: 24  // Set font size
-                            }}
+                            }},
+                            "color": "white"
                         }}
                     }},
                     scales: {{
@@ -79,6 +80,9 @@ def render(st: streamlit, scores: dict):
                             }},
                             ticks: {{
                                 display: false  // Hide tick labels
+                            }},
+                            pointLabels: {{
+                                color: "white"  // Make category labels white
                             }}
                         }}
                     }}
