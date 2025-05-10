@@ -3,7 +3,7 @@ from models.Assessment import Assessment
 from random import randint
 import numpy as np
 import matplotlib.pyplot as plt
-from . import score_chart
+from app import score_chart
 
 def progress_bar(st, assessment: Assessment):
     progress = len(assessment.answered_questions) / ( len(assessment.answered_questions) + len(assessment.questions) )
