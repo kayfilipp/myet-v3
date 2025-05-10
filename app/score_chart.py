@@ -58,7 +58,7 @@ def render(st: streamlit, scores: dict):
                     plugins: {{
                         legend: {{
                             display: false  // Hide the legend
-                        }}
+                        }},
                         title: {{
                             display: true,  // Show title
                             text: "Your Scores",  // Title text
