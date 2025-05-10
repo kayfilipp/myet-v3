@@ -9,4 +9,6 @@ dependencies = [
     "authlib>=1.4.1",
     "plotly>=6.0.0",
     "streamlit",
+    "numpy",
+    "matplotlib"
 ]
