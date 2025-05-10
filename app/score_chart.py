@@ -14,14 +14,24 @@ def render(st: streamlit, scores: dict):
     <head>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <style>
+            .chart-container {{
+                width: 400px;  /* Increase canvas size */
+                height: 400px; /* Increase canvas size */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px; /* Add padding to prevent cropping */
+            }}
             canvas {{
-                width: 300px !important;  /* Set smaller width */
-                height: 300px !important; /* Set smaller height */
+                width: 300px !important;  /* Keep chart size small */
+                height: 300px !important; /* Keep chart size small */
             }}
         </style>
     </head>
     <body>
-        <canvas id="spiderChart"></canvas>
+        <div class="chart-container">
+            <canvas id="spiderChart"></canvas>
+        </div>
         <script>
             const ctx = document.getElementById("spiderChart").getContext("2d");
             const spiderChart = new Chart(ctx, {{
@@ -69,4 +79,4 @@ def render(st: streamlit, scores: dict):
 
     # Embed the chart in Streamlit with a smaller height
     st.title("Personality Traits Radar Chart")
-    st.components.v1.html(html_code, height=400, width=400)  # Reduce height
+    st.components.v1.html(html_code, height=450, width=450)  # Reduce height
