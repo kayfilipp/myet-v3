@@ -13,15 +13,15 @@ def render(st: streamlit, scores: dict):
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <style>
             .chart-container {{
-                width: 500px;  /* Increase canvas size */
-                height: 500px; /* Increase canvas size */
+                width: 500px;  
+                height: 500px; 
                 display: flex;
                 justify-content: left;
                 align-items: left;
             }}
             canvas {{
-                width: 350px !important;  /* Keep chart size small */
-                height: 350px !important; /* Keep chart size small */
+                width: 350px !important;  
+                height: 350px !important; 
             }}
         </style>
     </head>
@@ -45,18 +45,18 @@ def render(st: streamlit, scores: dict):
                     }}]
                 }},
                 options: {{
-                    responsive: false,  // Prevent auto-resizing
-                    maintainAspectRatio: false,  // Allow custom sizing
+                    responsive: false,  
+                    maintainAspectRatio: false,  
                     layout: {{
                         padding: {{
-                            bottom: 40,  // Keep bottom padding for labels
-                            left: 40,  // Keep left padding for labels
-                            right: 40  // Keep right padding for labels
+                            bottom: 40,  
+                            left: 40,  
+                            right: 40  
                         }}
                     }},
                     plugins: {{
                         legend: {{
-                            display: false  // Hide the legend
+                            display: false  
                         }}
                     }},
                     scales: {{
@@ -64,16 +64,16 @@ def render(st: streamlit, scores: dict):
                             suggestedMin: 0,
                             suggestedMax: 5,
                             grid: {{
-                                color: "rgb(200,200,200)"  // Set grid lines to white
+                                color: "rgb(200,200,200)"  
                             }},
                             angleLines: {{
-                                color: "rgb(150,150,150)"  // Set angle lines to white
+                                color: "rgb(150,150,150)"  
                             }},
                             ticks: {{
-                                display: false  // Hide tick labels
+                                display: false  
                             }},
                             pointLabels: {{
-                                color: "white"  // Make category labels white
+                                color: "white"  
                             }}
                         }}
                     }}
