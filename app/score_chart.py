@@ -39,12 +39,6 @@ def render(st: streamlit, scores: dict):
                 options: {{
                     responsive: false,  // Prevent auto-resizing
                     maintainAspectRatio: false,  // Allow custom sizing
-                    scales: {{
-                        r: {{
-                            suggestedMin: 0,
-                            suggestedMax: 5
-                        }}
-                    }},
                     plugins: {{
                         legend: {{
                             display: false  // Hide the legend
