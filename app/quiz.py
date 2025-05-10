@@ -103,7 +103,7 @@ elif not assessment.started:
     # add a demo button because I'm lazy.
     if st.button("Demo"):
         for question in assessment.questions:
-            question.answer = randint(1,5)
+            question.answer = randint(1,8)
         assessment.answered_questions = assessment.questions
         assessment.questions = []
         assessment.submit()
