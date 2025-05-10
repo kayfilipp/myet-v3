@@ -72,7 +72,7 @@ assessment = st.session_state.get('assessment')
 # if assessment completed, print some stuff out 
 if assessment.completed:
 
-    c = st.columns([1.5,1.5,7])
+    c = st.columns([1.5,2.5,6])
 
     with c[0]:
         st.subheader("Nice Job!")
