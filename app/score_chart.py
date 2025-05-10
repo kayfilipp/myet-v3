@@ -16,9 +16,8 @@ def render(st: streamlit, scores: dict):
                 width: 500px;  /* Increase canvas size */
                 height: 500px; /* Increase canvas size */
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 0px 40px 40px 40px; /* Reduce top padding */
+                justify-content: left;
+                align-items: left;
             }}
             canvas {{
                 width: 350px !important;  /* Keep chart size small */
