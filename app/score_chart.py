@@ -29,6 +29,7 @@ def render(st: streamlit, scores: dict):
                 data: {{
                     labels: {labels},
                     datasets: [{{
+                        label: "Score",
                         data: {values},
                         backgroundColor: "rgba(134, 94, 173, 0.2)",
                         borderColor: "rgba(134, 94, 173, 1)",
@@ -43,7 +44,13 @@ def render(st: streamlit, scores: dict):
                             suggestedMin: 0,
                             suggestedMax: 5
                         }}
-                    }}
+                    }},
+                    plugins: {{
+                        legend: {{
+                            display: false  // Hide the legend
+                        }}
+                    }},
+
                 }}
             }});
         </script>
