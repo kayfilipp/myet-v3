@@ -72,8 +72,9 @@ class Assessment:
         df = pd.DataFrame(_dict)
         df['score'] = df['weight'] * df['answer']
         df = df.groupby('facet')['score'].sum().reset_index()
+        df = df.set_index('facet')
         
-        self.results = df.to_dict(orient='records')
+        self.results = df['score'].to_dict()
 
     def save_assessment(self):
         pass
