@@ -1,13 +1,11 @@
 import streamlit 
 
-
 def render(st: streamlit, scores: dict):
-
     # Convert dictionary to JavaScript-friendly format
     labels = list(scores.keys())
     values = list(scores.values())
 
-    # HTML & JavaScript for Chart.js with smaller size
+    # HTML & JavaScript for Chart.js with larger canvas but same chart size
     html_code = f"""
     <!DOCTYPE html>
     <html>
@@ -49,6 +47,11 @@ def render(st: streamlit, scores: dict):
                 options: {{
                     responsive: false,  // Prevent auto-resizing
                     maintainAspectRatio: false,  // Allow custom sizing
+                    plugins: {{
+                        legend: {{
+                            display: false  // Hide the legend
+                        }}
+                    }},
                     scales: {{
                         r: {{
                             suggestedMin: 0,
@@ -57,19 +60,13 @@ def render(st: streamlit, scores: dict):
                                 display: false  // Hide tick labels
                             }},
                             grid: {{
-                                display: true  // Hide grid lines
+                                display: false  // Hide grid lines
                             }},
                             angleLines: {{
-                                display: true  // Hide angle lines
+                                display: false  // Hide angle lines
                             }}
                         }}
-                    }},
-                    plugins: {{
-                        legend: {{
-                            display: false  // Hide the legend
-                        }}
-                    }},
-
+                    }}
                 }}
             }});
         </script>
@@ -77,6 +74,6 @@ def render(st: streamlit, scores: dict):
     </html>
     """
 
-    # Embed the chart in Streamlit with a smaller height
+    # Embed the chart in Streamlit with a larger canvas
     st.title("Personality Traits Radar Chart")
-    st.components.v1.html(html_code, height=450, width=450)  # Reduce height
+    st.components.v1.html(html_code, height=450, width=450)  # Increase iframe size
