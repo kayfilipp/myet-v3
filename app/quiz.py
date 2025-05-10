@@ -72,14 +72,20 @@ assessment = st.session_state.get('assessment')
 
 # if assessment completed, print some stuff out 
 if assessment.completed:
-    st.subheader("Nice Job!")
-    st.caption("Here's how you did.")
-    st.dataframe(assessment.results, use_container_width=False)
-    score_chart.render(st, assessment.results)
 
-    if st.button("Restart"):
-        del st.session_state['assessment']
-        st.rerun()
+    c = st.columns([2,2,6])
+
+    with c[0]:
+        st.subheader("Nice Job!")
+        st.caption("Here's how you did.")
+        st.dataframe(assessment.results, use_container_width=False)
+
+        if st.button("Restart"):
+            del st.session_state['assessment']
+            st.rerun()
+
+    with c[1]:
+        score_chart.render(st, assessment.results)
 
 elif not assessment.started:
 
