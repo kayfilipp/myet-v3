@@ -18,7 +18,7 @@ def render(st: streamlit, scores: dict):
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                padding: 20px 40px 40px 40px; /* Reduce top padding */
+                padding: 0px 40px 40px 40px; /* Reduce top padding */
             }}
             canvas {{
                 width: 350px !important;  /* Keep chart size small */
