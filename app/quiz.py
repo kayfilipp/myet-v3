@@ -1,9 +1,8 @@
 import streamlit as st 
 from models.Assessment import Assessment
 from random import randint
-import numpy as np
-import matplotlib.pyplot as plt
 from app import score_chart
+from app import trait_descriptions
 
 def progress_bar(st, assessment: Assessment):
     progress = len(assessment.answered_questions) / ( len(assessment.answered_questions) + len(assessment.questions) )
@@ -14,7 +13,7 @@ def answer_question(st, assessment: Assessment, id, state_key):
 
 def render_questions(st, assessment: Assessment):
     
-    options = list(range(1,6))
+    options = list(range(1,9))
 
     for question in assessment.current_questions:
         
@@ -89,6 +88,10 @@ if assessment.completed:
         st.caption("Who doesn't like pictures?")
         score_chart.render(st, assessment.results)
 
+    with c[2]:
+        st.subheader("Understanding your Results")
+        trait_descriptions.render(st)
+
 elif not assessment.started:
 
     num_questions = len(assessment.questions)
@@ -115,4 +118,4 @@ else:
 
     progress_bar(st, assessment)
     render_questions(st, assessment)
-    st.caption("1 = Strongly Disagree, 5 = Strongly Agree")
+    st.caption("1 = Strongly Disagree, 4 = Neutral, 8 = Strongly Agree")
