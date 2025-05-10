@@ -8,6 +8,9 @@ st.set_page_config(
     layout="wide"
 )
 
+# styles
+st.components.v1.html("styles.html")
+
 # Define app pages
 landing_page = st.Page("./app/landing.py", title="Welcome", icon=":material/menu:")
 app_page = st.Page("./app/app.py", title="Home", icon=":material/home:")
