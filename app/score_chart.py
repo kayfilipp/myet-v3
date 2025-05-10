@@ -46,4 +46,4 @@ def render(st: streamlit, scores: dict):
 
     # Embed the chart in Streamlit
     st.title("Personality Traits Radar Chart")
-    st.components.v1.html(html_code, height=500)
+    st.components.v1.html(html_code)
