@@ -63,7 +63,7 @@ def render(st: streamlit, scores: dict):
                             display: true,  // Show title
                             text: "Your Scores",  // Title text
                             font: {{
-                                size: 18  // Set font size
+                                size: 24  // Set font size
                             }}
                         }}
                     }},
