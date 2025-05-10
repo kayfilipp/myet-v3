@@ -39,9 +39,10 @@ def render(st: streamlit, scores: dict):
                     datasets: [{{
                         label: "Score",
                         data: {values},
-                        backgroundColor: "rgba(148, 0, 211, 0.8)",
+                        backgroundColor: "rgba(77, 25, 138,0.8)",
                         borderColor: "rgba(148, 0, 211, 1)",
-                        borderWidth: 2
+                        borderWidth: 2,
+                        pointBackgroundColor: "rgba(148, 0, 211, 0.1)"
                     }}]
                 }},
                 options: {{
