@@ -4,12 +4,7 @@ import streamlit
 def render(st: streamlit, scores: dict):
 
     _html = f"""
-    <!DOCTYPE html>
-    <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Spider Chart Example</title>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
@@ -45,7 +40,6 @@ def render(st: streamlit, scores: dict):
             }});
         </script>
     </body>
-    </html>
 
     """
 
