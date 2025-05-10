@@ -78,7 +78,7 @@ if assessment.completed:
     with c[0]:
         st.subheader("Nice Job!")
         st.caption("Here's how you did.")
-        st.dataframe(assessment.results, use_container_width=True, column_config={"value": None})
+        st.dataframe(assessment.results, use_container_width=True, column_config={"value": 'score'})
 
         if st.button("Restart"):
             del st.session_state['assessment']
