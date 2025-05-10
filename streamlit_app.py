@@ -1,5 +1,6 @@
 import streamlit as st
 from models.User import User
+from app import sidebar 
 
 st.set_page_config(
     page_title="MYET",
@@ -55,11 +56,7 @@ else:
 
         st.session_state['User'] = _user
 
-    # add a logout button to the sidebar
-    with st.sidebar:
-        st.caption(f"Logged in with {user['email']}")
-        if st.button("🔓 Logout"):
-            st.logout()
+    sidebar.render(st)
 
 # Head to first page of navigation
 pg.run()
