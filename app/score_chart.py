@@ -72,10 +72,10 @@ def render(st: streamlit, scores: dict):
                             suggestedMin: 0,
                             suggestedMax: 5,
                             grid: {{
-                                color: "white"  // Set grid lines to white
+                                color: "rgb(200,200,200)"  // Set grid lines to white
                             }},
                             angleLines: {{
-                                color: "white"  // Set angle lines to white
+                                color: "rgb(150,150,150)"  // Set angle lines to white
                             }},
                             ticks: {{
                                 display: false  // Hide tick labels
