@@ -3,27 +3,28 @@ import streamlit
 
 def render(st: streamlit, scores: dict):
 
-    _html = f"""
+    # Convert dictionary to JavaScript-friendly format
+    labels = list(scores.keys())
+    values = list(scores.values())
+
+    # HTML & JavaScript for Chart.js
+    html_code = f"""
+    <!DOCTYPE html>
+    <html>
     <head>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
         <canvas id="spiderChart"></canvas>
-
         <script>
-            const scores = {scores};
-
-            const labels = Object.keys(scores);
-            const values = Object.values(scores);
-
             const ctx = document.getElementById("spiderChart").getContext("2d");
             const spiderChart = new Chart(ctx, {{
                 type: "radar",
                 data: {{
-                    labels: labels,
+                    labels: {labels},
                     datasets: [{{
                         label: "Personality Traits",
-                        data: values,
+                        data: {values},
                         backgroundColor: "rgba(0, 123, 255, 0.2)",
                         borderColor: "rgba(0, 123, 255, 1)",
                         borderWidth: 2
@@ -40,7 +41,9 @@ def render(st: streamlit, scores: dict):
             }});
         </script>
     </body>
-
+    </html>
     """
 
-    st.markdown(_html, unsafe_allow_html=True)
+    # Embed the chart in Streamlit
+    st.title("Personality Traits Radar Chart")
+    st.components.v1.html(html_code, height=500)
