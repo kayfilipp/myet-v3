@@ -5,7 +5,7 @@ def render(st: streamlit, scores: dict):
     labels = list(scores.keys())
     values = list(scores.values())
 
-    # HTML & JavaScript for Chart.js with larger canvas but same chart size
+    # HTML & JavaScript for Chart.js with extra padding for labels
     html_code = f"""
     <!DOCTYPE html>
     <html>
@@ -13,16 +13,16 @@ def render(st: streamlit, scores: dict):
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <style>
             .chart-container {{
-                width: 400px;  /* Increase canvas size */
-                height: 400px; /* Increase canvas size */
+                width: 500px;  /* Increase canvas size */
+                height: 500px; /* Increase canvas size */
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                padding: 20px; /* Add padding to prevent cropping */
+                padding: 40px; /* Add more padding to prevent cropping */
             }}
             canvas {{
-                width: 300px !important;  /* Keep chart size small */
-                height: 300px !important; /* Keep chart size small */
+                width: 350px !important;  /* Keep chart size small */
+                height: 350px !important; /* Keep chart size small */
             }}
         </style>
     </head>
@@ -47,6 +47,14 @@ def render(st: streamlit, scores: dict):
                 options: {{
                     responsive: false,  // Prevent auto-resizing
                     maintainAspectRatio: false,  // Allow custom sizing
+                    layout: {{
+                        padding: {{
+                            top: 40,  // Extra space for top labels
+                            bottom: 40,  // Extra space for bottom labels
+                            left: 40,  // Extra space for left labels
+                            right: 40  // Extra space for right labels
+                        }}
+                    }},
                     plugins: {{
                         legend: {{
                             display: false  // Hide the legend
@@ -76,4 +84,4 @@ def render(st: streamlit, scores: dict):
 
     # Embed the chart in Streamlit with a larger canvas
     st.title("Personality Traits Radar Chart")
-    st.components.v1.html(html_code, height=450, width=450)  # Increase iframe size
+    st.components.v1.html(html_code, height=550, width=550)  # Increase iframe size
