@@ -4,10 +4,10 @@ import streamlit
 def render(st: streamlit, scores: dict):
 
     # Convert dictionary to JavaScript-friendly format
-    labels = list(scores.keys())
+    labels = list(scores.keys())  # Assume scores is defined elsewhere
     values = list(scores.values())
 
-    # HTML & JavaScript for Chart.js with smaller size
+    # HTML & JavaScript for Chart.js with scores as labels and no scale
     html_code = f"""
     <!DOCTYPE html>
     <html>
@@ -15,8 +15,8 @@ def render(st: streamlit, scores: dict):
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <style>
             canvas {{
-                width: 300px !important;  /* Set smaller width */
-                height: 300px !important; /* Set smaller height */
+                width: 300px !important;
+                height: 300px !important;
             }}
         </style>
     </head>
@@ -27,7 +27,7 @@ def render(st: streamlit, scores: dict):
             const spiderChart = new Chart(ctx, {{
                 type: "radar",
                 data: {{
-                    labels: {labels},
+                    labels: {labels}.map((label, index) => `${{label}}: ${{{values}[index]}}`), // Show scores in labels
                     datasets: [{{
                         label: "Personality Traits",
                         data: {values},
@@ -37,12 +37,11 @@ def render(st: streamlit, scores: dict):
                     }}]
                 }},
                 options: {{
-                    responsive: false,  // Prevent auto-resizing
-                    maintainAspectRatio: false,  // Allow custom sizing
+                    responsive: false,
+                    maintainAspectRatio: false,
                     scales: {{
                         r: {{
-                            suggestedMin: 0,
-                            suggestedMax: 5
+                            display: false // Hide the scale
                         }}
                     }}
                 }}
@@ -52,6 +51,6 @@ def render(st: streamlit, scores: dict):
     </html>
     """
 
-    # Embed the chart in Streamlit with a smaller height
+    # Embed the chart in Streamlit
     st.title("Personality Traits Radar Chart")
-    st.components.v1.html(html_code, height=400, width=400)  # Reduce height
+    st.components.v1.html(html_code, height=350)
