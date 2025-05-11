@@ -39,18 +39,17 @@ else:
     )
 
     # save the user as a User object if they don't already exist.
-    user = st.experimental_user
-
     if not st.session_state.get('User'):
 
+        user = st.experimental_user
         firstname = user.get('given_name') if user.get('given_name') else user.get('name')
         lastname = user.get('family_name')
+        email = user.get('email')
 
         _user = User(
-            auth_id=user['email'],
             firstname=firstname,
             lastname=lastname,
-            email=user['email']
+            email=email
         )
         _user.sync()
 
