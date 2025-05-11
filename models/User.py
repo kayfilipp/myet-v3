@@ -24,7 +24,7 @@ class User:
             query="select id from user where email = ? limit 1", 
             params=[self.email], 
             return_=True, 
-            as_dict=False
+            as_dict=True
         )
 
-        self.id = id 
+        self.id = id[0]['id']
