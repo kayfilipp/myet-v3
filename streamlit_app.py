@@ -1,6 +1,6 @@
 import streamlit as st
 from models.User import User
-from app import sidebar 
+from components import sidebar 
 
 st.set_page_config(
     page_title="MYET",
