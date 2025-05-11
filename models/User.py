@@ -15,7 +15,7 @@ class User:
     def sync(self):
         DB.run_query(
             query="""insert or ignore into user(firstname, lastname, email) values (?, ?, ?)""", 
-            params=(self.auth_id, self.firstname, self.lastname, self.email),
+            params=(self.firstname, self.lastname, self.email),
             commit=True,
             return_=False
         )
