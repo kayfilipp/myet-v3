@@ -68,7 +68,7 @@ if not st.session_state.get('assessment'):
 
 assessment = st.session_state.get('assessment')
 
-# if assessment completed, print some stuff out 
+
 if assessment.completed:
     results.render(st, assessment.results)
 
@@ -87,7 +87,19 @@ if assessment.completed:
     if st.button("Share", use_container_width=True):
         pass 
 
-elif not assessment.started:
+elif assessment.started:
+
+    with st.popover("Quit"):
+        st.caption("Are you sure? All progress will be lost.")
+        if st.button("Yes"):
+            del st.session_state['assessment']
+            st.rerun()
+
+    progress_bar(st, assessment)
+    render_questions(st, assessment)
+    st.caption("1 = Strongly Disagree, 4 = Neutral, 8 = Strongly Agree")
+
+else:
 
     num_questions = len(assessment.questions)
     st.text(f"This assessment will consist of {num_questions} questions. Feel free to explore our website and take breaks - your progress will be saved.")        
@@ -101,16 +113,3 @@ elif not assessment.started:
         assessment.questions = []
         assessment.submit()
         st.rerun()
-
-else:
-
-    # the only other option is that the assessment hasn't been completed.
-    with st.popover("Quit"):
-        st.caption("Are you sure? All progress will be lost.")
-        if st.button("Yes"):
-            del st.session_state['assessment']
-            st.rerun()
-
-    progress_bar(st, assessment)
-    render_questions(st, assessment)
-    st.caption("1 = Strongly Disagree, 4 = Neutral, 8 = Strongly Agree")

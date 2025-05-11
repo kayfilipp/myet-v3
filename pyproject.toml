@@ -10,6 +10,5 @@ dependencies = [
     "plotly>=6.0.0",
     "streamlit",
     "numpy",
-    "matplotlib",
-    "ksuid"
+    "matplotlib"
 ]

@@ -2,7 +2,7 @@ from models.Question import Question
 from models.User import User 
 import pandas as pd 
 from . import DB
-import ksuid 
+import json 
 
 class Assessment:
 
@@ -11,22 +11,23 @@ class Assessment:
     chunk_size: how many questions are displayed at the same time 
     """
 
-    def __init__(self, user: User=None, limit: int=None, chunk_size: int=1):
-        
-        self.id = str(ksuid.ksuid())
+    def __init__(self, user: User=None, limit: int=None, chunk_size: int=1, is_public=False, saved=False, results:dict=None):
+
         self.user = user
-        self.started = False 
-        self.completed = False
-
         self.limit = limit 
-        self.questions = self.__get_questions() 
-        self.answered_questions: list[Question] = []
-        self.current_questions: list[Question] = [] 
-
         self.chunk_size = chunk_size
+        self.results = results
+        self.saved = saved
+        self.is_public = is_public
 
-        self.results = None
-        self.saved = False
+        self.started = False if not self.saved else True 
+        self.completed = False if not self.saved else True 
+
+        if not self.completed:
+            self.questions = self.__get_questions() 
+            self.answered_questions: list[Question] = []
+            self.current_questions: list[Question] = [] 
+
 
     def __get_questions(self):
         query = "select * from question"
@@ -81,7 +82,18 @@ class Assessment:
         self.results = df['score'].to_dict()
 
     def save_assessment(self):
-        pass
+        json_results = json.dumps(self.results)
+        query = "insert into assessment(user_id,json_results) values (?,?)"
+        params = (self.user.id, json_results)
+
+        DB.run_query(
+            query=query,
+            params=params,
+            return_=False,
+            commit=True
+        )
+
+        self.saved = True 
 
     @property
     def has_next(self):
