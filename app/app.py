@@ -4,7 +4,7 @@ from models.Profile import Profile
 st.title("Welcome to your MYET Account!")
 user = st.session_state['User']
 
-if not user["email_verified"]:
+if not st.experimental_user["email_verified"]:
     st.warning("Please verify your email and login back to unlock all features")
 
 st.divider()
