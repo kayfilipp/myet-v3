@@ -70,7 +70,7 @@ assessment = st.session_state.get('assessment')
 
 # if assessment completed, print some stuff out 
 if assessment.completed:
-    results.render(st)
+    results.render(st, assessment.results)
 
     if st.button("Restart", use_container_width=True):
         del st.session_state['assessment']
