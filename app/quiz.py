@@ -80,6 +80,7 @@ if assessment.completed:
     if not assessment.saved:
         if st.button("Save This Score", use_container_width=True):
             assessment.save_assessment()
+            st.rerun()
     else:
         st.button("Saved!", use_container_width=True, disabled=True)
     
