@@ -11,7 +11,7 @@ st.divider()
 
 
 st.subheader(user.name)
-st.image(user.get("picture", ".\assets\default_profile.jpg"))
+st.image(st.experimental_user.get("picture", ".\assets\default_profile.jpg"))
 st.page_link("./app/quiz.py", label="Take Assessment")
 
 st.divider()
