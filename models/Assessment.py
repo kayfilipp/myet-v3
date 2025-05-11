@@ -2,6 +2,7 @@ from models.Question import Question
 from models.User import User 
 import pandas as pd 
 from . import DB
+import ksuid 
 
 class Assessment:
 
@@ -11,6 +12,8 @@ class Assessment:
     """
 
     def __init__(self, user: User=None, limit: int=None, chunk_size: int=1):
+        
+        self.id = str(ksuid.ksuid())
         self.user = user
         self.started = False 
         self.completed = False
@@ -23,6 +26,7 @@ class Assessment:
         self.chunk_size = chunk_size
 
         self.results = None
+        self.saved = False
 
     def __get_questions(self):
         query = "select * from question"

@@ -1,8 +1,7 @@
 import streamlit as st 
 from models.Assessment import Assessment
 from random import randint
-from app import score_chart
-from app import trait_descriptions
+from components import results
 
 def progress_bar(st, assessment: Assessment):
     progress = len(assessment.answered_questions) / ( len(assessment.answered_questions) + len(assessment.questions) )
@@ -71,28 +70,7 @@ assessment = st.session_state.get('assessment')
 
 # if assessment completed, print some stuff out 
 if assessment.completed:
-
-    c = st.columns([1.5,2.5,6])
-
-    with c[0]:
-        st.subheader("Nice Job!")
-        st.caption("Here's how you did.")
-        st.dataframe(assessment.results, use_container_width=True, column_config={"value": 'score'})
-
-    with c[1]:
-        st.subheader("Visual Breakdown")
-        st.caption("Who doesn't like pictures?")
-        score_chart.render(st, assessment.results)
-
-    with c[2]:
-        st.subheader("Understanding your Results")
-        trait_descriptions.render(st)
-
-    st.divider()
-
-    if st.button("Restart", use_container_width=True):
-        del st.session_state['assessment']
-        st.rerun()
+    results.render(st)
 
 elif not assessment.started:
 
