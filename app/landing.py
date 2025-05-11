@@ -6,12 +6,6 @@ st.markdown(
     "Welcome to MYET - a new frontier in risk assessment. Log in to get started!"
 )
 
-
-if st.button(
-    "Log In",
-    type="primary",
-    key="checkout-button",
-    use_container_width=False   ,
-):
+if st.button("Log In", type="primary", key="checkout-button", use_container_width=False):
     st.login("auth0")
 

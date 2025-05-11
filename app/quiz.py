@@ -66,7 +66,7 @@ if not st.session_state.get('assessment'):
         limit=None, 
         chunk_size=st.secrets['questions_chunk_size'])
 
-assessment = st.session_state.get('assessment')
+assessment : Assessment = st.session_state.get('assessment')
 
 
 if assessment.completed:
@@ -79,7 +79,7 @@ if assessment.completed:
     # to-do
     if not assessment.saved:
         if st.button("Save This Score", use_container_width=True):
-            pass
+            assessment.save_assessment()
     else:
         st.button("Saved!", use_container_width=True, disabled=True)
     
