@@ -20,4 +20,7 @@ profile = Profile(user)
 profile.get_assessment_history()
 
 st.subheader("Your Previous Assessments")
-st.dataframe(profile.assessments)
+if len(profile.assessments)>0:
+    st.dataframe(profile.assessments)
+else:
+    st.caption("You have not taken any assessments.")
