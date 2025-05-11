@@ -9,10 +9,19 @@ class User:
         self.email = email 
         self.db = DB
 
-    def save(self):
+    def sync(self):
         DB.run_query(
-            query="""insert or replace into user(auth_id, firstname, lastname, email) values (?, ?, ?, ?)""", 
+            query="""insert or ignore into user(auth_id, firstname, lastname, email) values (?, ?, ?, ?)""", 
             params=(self.auth_id, self.firstname, self.lastname, self.email),
             commit=True,
             return_=False
         )
+
+        id = DB.run_query(
+            query="select id from user where auth_id = ?", 
+            params=(self.auth_id), 
+            return_=True, 
+            as_dict=True
+        )
+
+        print(id)

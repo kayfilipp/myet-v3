@@ -20,15 +20,3 @@ def render(st):
         trait_descriptions.render(st)
 
     st.divider()
-
-    if st.button("Restart", use_container_width=True):
-        del st.session_state['assessment']
-        st.rerun()
-
-    # to-do
-    if st.button("Save This Score", use_container_width=True):
-        pass 
-    
-    # to-do
-    if st.button("Share", use_container_width=True):
-        pass 

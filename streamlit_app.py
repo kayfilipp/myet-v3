@@ -52,7 +52,7 @@ else:
             lastname=lastname,
             email=user['email']
         )
-        _user.save()
+        _user.sync()
 
         st.session_state['User'] = _user
 

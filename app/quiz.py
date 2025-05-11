@@ -72,6 +72,21 @@ assessment = st.session_state.get('assessment')
 if assessment.completed:
     results.render(st)
 
+    if st.button("Restart", use_container_width=True):
+        del st.session_state['assessment']
+        st.rerun()
+    
+    # to-do
+    if not assessment.saved:
+        if st.button("Save This Score", use_container_width=True):
+            pass 
+    else:
+        st.button("Saved to your profile!", use_container_width=True, disabled=True)
+    
+    # to-do
+    if st.button("Share", use_container_width=True):
+        pass 
+
 elif not assessment.started:
 
     num_questions = len(assessment.questions)
