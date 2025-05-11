@@ -28,3 +28,7 @@ class User:
         )
 
         self.id = id[0]['id']
+
+    @property
+    def name(self):
+        return self.firstname + ' ' + self.lastname

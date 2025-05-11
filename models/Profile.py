@@ -8,6 +8,7 @@ class Profile:
 
     def __init__(self, user: User):
         self.user = user 
+        self.assessments: list[dict] = None
 
     def get_assessment_history(self):
         query="select id, created_date, json_results, is_public from assessment where user_id = ?"
