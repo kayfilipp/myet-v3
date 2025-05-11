@@ -76,12 +76,15 @@ if assessment.completed:
         del st.session_state['assessment']
         st.rerun()
     
+    if st.session_state['demo']:
+        st.stop()
+
     # to-do
     if not assessment.saved:
         if st.button("Save This Score", use_container_width=True):
-            pass 
+            pass
     else:
-        st.button("Saved to your profile!", use_container_width=True, disabled=True)
+        st.button("Saved!", use_container_width=True, disabled=True)
     
     # to-do
     if st.button("Share", use_container_width=True):
@@ -107,6 +110,7 @@ else:
 
     # add a demo button because I'm lazy.
     if st.button("Demo"):
+        st.session_state['demo'] = True 
         for question in assessment.questions:
             question.answer = randint(1,8)
         assessment.answered_questions = assessment.questions
