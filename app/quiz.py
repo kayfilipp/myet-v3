@@ -75,9 +75,6 @@ if assessment.completed:
     if st.button("Restart", use_container_width=True):
         del st.session_state['assessment']
         st.rerun()
-    
-    if st.session_state['demo']:
-        st.stop()
 
     # to-do
     if not assessment.saved:

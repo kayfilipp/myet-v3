@@ -70,7 +70,6 @@ class Assessment:
     def submit(self):
         self.completed = True 
         self.calculate_score()
-        self.save_assessment()
 
     def calculate_score(self):
         _dict = [question.__dict__ for question in self.answered_questions]
