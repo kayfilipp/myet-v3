@@ -75,7 +75,7 @@ class Assessment:
         _dict = [question.__dict__ for question in self.answered_questions]
         df = pd.DataFrame(_dict)
         df['score'] = df['weight'] * df['answer']
-        df = df.groupby('facet')['score'].sum().reset_index()
+        df = df.groupby('facet')['score'].sum().round(2).reset_index()
         df = df.set_index('facet')
         
         self.results = df['score'].to_dict()
