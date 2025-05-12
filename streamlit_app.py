@@ -40,26 +40,25 @@ else:
         position="sidebar",
     )
 
-# Head to first page of navigation
-pg.run()
+    # Head to first page of navigation
+    pg.run()
 
-# save the user as a User object if they don't already exist and display them in the sidebar.
-if not st.session_state.get('User'):
+    # save the user as a User object if they don't already exist and display them in the sidebar.
+    if not st.session_state.get('User'):
 
-    user = st.experimental_user
-    firstname = user.get('given_name') if user.get('given_name') else user.get('name')
-    lastname = user.get('family_name')
-    email = user.get('email')
+        user = st.experimental_user
+        firstname = user.get('given_name') if user.get('given_name') else user.get('name')
+        lastname = user.get('family_name')
+        email = user.get('email')
 
-    if email:
+        if email:
 
-        _user = User(
-            firstname=firstname,
-            lastname=lastname,
-            email=email
-        )
-        _user.sync()
+            _user = User(
+                firstname=firstname,
+                lastname=lastname,
+                email=email
+            )
+            _user.sync()
 
-        st.session_state['User'] = _user
-
-        user_sidebar.render(st)
+            st.session_state['User'] = _user
+            user_sidebar.render(st)
