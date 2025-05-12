@@ -13,7 +13,7 @@ class User:
 
     def sync(self):
         SNOWFLAKE.run_query(
-            query="insert into user(firstname, lastname, email) values (%s, %s, %s) where not exists (select 1 from user where email = %s)", 
+            query="insert into user(firstname, lastname, email) select %s, %s, %s where not exists (select 1 from user where email = %s)", 
             params=(self.firstname, self.lastname, self.email, self.email),
             commit=True,
             return_=False
