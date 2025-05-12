@@ -49,5 +49,5 @@ class SnowFlakeSql(SQLite):
     @staticmethod
     def data_as_dict(con, cur):
         rows = cur.fetchall()
-        columns = [desc[0] for desc in cur.description]
+        columns = [desc[0].lower() for desc in cur.description]
         return [dict(zip(columns, row)) for row in rows]

@@ -1,7 +1,7 @@
 from models.Question import Question
 from models.User import User 
 import pandas as pd 
-from . import DB
+from . import DB, SNOWFLAKE
 import json 
 
 class Assessment:
@@ -34,7 +34,7 @@ class Assessment:
         if self.limit:
             query += f" limit {self.limit}"
 
-        questions = DB.run_query(query)
+        questions = SNOWFLAKE.run_query(query)
         return [Question(**row) for row in questions]
     
     def answer_question(self, id, answer):
