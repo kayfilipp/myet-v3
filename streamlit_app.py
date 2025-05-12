@@ -46,8 +46,6 @@ else:
         lastname = user.get('family_name')
         email = user.get('email')
 
-        print('saving user with ', firstname, lastname, email)
-
         _user = User(
             firstname=firstname,
             lastname=lastname,
