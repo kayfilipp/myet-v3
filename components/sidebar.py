@@ -3,6 +3,7 @@ from models.User import User
 def render(st):
 
     user: User = st.session_state['User']
+    user.sync() if not user.id else None
 
     # add a logout button to the sidebar
     with st.sidebar:
