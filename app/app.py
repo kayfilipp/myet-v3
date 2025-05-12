@@ -16,11 +16,13 @@ st.page_link("./app/quiz.py", label="Take Assessment")
 
 st.divider()
 
-profile = Profile(user)
-profile.get_assessment_history()
+if user.id is not None:
 
-st.subheader("Your Previous Assessments")
-if len(profile.assessments)>0:
-    st.dataframe(profile.assessments)
-else:
-    st.caption("You have not taken any assessments.")
+    profile = Profile(user)
+    profile.get_assessment_history()
+
+    st.subheader("Your Previous Assessments")
+    if len(profile.assessments)>0:
+        st.dataframe(profile.assessments)
+    else:
+        st.caption("You have not taken any assessments.")
