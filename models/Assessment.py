@@ -82,7 +82,7 @@ class Assessment:
 
     def save_assessment(self):
         json_results = json.dumps(self.results)
-        query = "insert into assessment(user_id,json_results) select %s,%s"
+        query = "insert into assessment(user_id,json_results) select %s, PARSE_JSON(%s)"
         params = (self.user.id, json_results)
 
         SNOWFLAKE.run_query(
