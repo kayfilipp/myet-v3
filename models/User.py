@@ -11,7 +11,7 @@ class User:
         self.lastname = lastname 
         self.email = email 
 
-    def sync(self):
+    async def get_user_id(self):
 
         SNOWFLAKE.get_con()
 

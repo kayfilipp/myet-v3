@@ -1,6 +1,7 @@
 import streamlit as st
 from models.User import User
-from components import sidebar 
+from components import sidebar
+import asyncio 
 
 st.set_page_config(
     page_title="MYET",
@@ -51,6 +52,8 @@ else:
             lastname=lastname,
             email=email
         )
+
+        asyncio.run(st.session_state['User'].get_user_id())
 
     sidebar.render(st)
 
