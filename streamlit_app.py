@@ -38,6 +38,8 @@ else:
         position="sidebar",
     )
 
+    sidebar.render(st)
+
     # save the user as a User object if they don't already exist.
     if not st.session_state.get('User'):
 
@@ -54,8 +56,6 @@ else:
         _user.sync()
 
         st.session_state['User'] = _user
-
-    sidebar.render(st)
 
 # Head to first page of navigation
 pg.run()
