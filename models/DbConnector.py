@@ -20,7 +20,7 @@ class SQLite:
             self.con.commit()
 
         if return_:
-            data = self.data_as_dict(self.con,self.cur) if as_dict else self.cur.fetchall()
+            data = self.data_as_dict() if as_dict else self.cur.fetchall()
         else:
             data = None
         
