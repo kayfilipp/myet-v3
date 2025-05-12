@@ -1,4 +1,4 @@
-from . import DB
+from . import SNOWFLAKE
 
 class User:
 
@@ -10,19 +10,18 @@ class User:
         self.firstname = firstname
         self.lastname = lastname 
         self.email = email 
-        self.db = DB
 
     def sync(self):
-        DB.run_query(
-            query="""insert or ignore into user(firstname, lastname, email) values (?, ?, ?)""", 
+        SNOWFLAKE.run_query(
+            query="""insert into user(firstname, lastname, email) values (%s, %s, %s)""", 
             params=(self.firstname, self.lastname, self.email),
             commit=True,
             return_=False
         )
 
-        id = DB.run_query(
-            query="select id from user where email = ? limit 1", 
-            params=[self.email], 
+        id = SNOWFLAKE.run_query(
+            query="select id from user where email = %s limit 1", 
+            params=(self.email,), 
             return_=True, 
             as_dict=True
         )
