@@ -85,7 +85,7 @@ class Assessment:
         query = "insert into assessment(user_id,json_results) values (%s,%s)"
         params = (self.user.id, json_results)
 
-        DB.run_query(
+        SNOWFLAKE.run_query(
             query=query,
             params=params,
             return_=False,
