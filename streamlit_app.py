@@ -55,7 +55,6 @@ else:
         )
 
         st.session_state['profile'] = Profile(st.session_state['User'])
-
         asyncio.run(st.session_state['User'].get_user_id())
 
     sidebar.render(st)
