@@ -69,6 +69,8 @@ assessment_result_id = st.query_params.get('assesment_id')
 if assessment_result_id:
     profile: Profile = st.session_state['profile']
     assessment = profile.get_assessment(int(assessment_result_id))
+    st.write(assessment)
+    
     st.session_state['assessment'] = Assessment(
         user=user,
         saved=True,
@@ -83,7 +85,6 @@ elif not st.session_state.get('assessment'):
         chunk_size=st.secrets['questions_chunk_size'])
     
 assessment : Assessment = st.session_state.get('assessment')
-
 
 if assessment.completed:
     results.render(st, assessment.results)

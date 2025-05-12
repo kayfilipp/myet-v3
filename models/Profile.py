@@ -33,4 +33,4 @@ class Profile:
         # add assessment to profile 
         self.assessments += assessment 
 
-        return assessment
+        return assessment[0]
