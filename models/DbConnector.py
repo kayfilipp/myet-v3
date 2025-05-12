@@ -14,7 +14,7 @@ class SQLite:
 
         return con, cur 
 
-    def run_query(self, query, commit=False, return_=True, as_dict=True, params=()):
+    def run_query(self, query, commit=False, return_=True, as_dict=True, params=(), close_after_operation=True):
 
         con, cur = self.get_con()
 
@@ -23,12 +23,14 @@ class SQLite:
         if commit:
             con.commit()
 
-        if not return_:
+        if return_:
+            data = self.data_as_dict(con,cur) if as_dict else cur.fetchall()
+        else:
+            data = None
+        
+        if close_after_operation:
             con.close()
-            return 
 
-        data = self.data_as_dict(con,cur) if as_dict else cur.fetchall()
-        con.close()
         return data 
 
 
