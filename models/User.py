@@ -12,19 +12,20 @@ class User:
         self.email = email 
 
     def sync(self):
-        SNOWFLAKE.run_query(
-            query="insert into user(firstname, lastname, email) select %s, %s, %s where not exists (select 1 from user where email = %s)", 
-            params=(self.firstname, self.lastname, self.email, self.email),
-            commit=True,
-            return_=False
-        )
-
         id = SNOWFLAKE.run_query(
-            query="select id from user where email = %s limit 1", 
-            params=(self.email,), 
-            return_=True, 
+            query="insert into user(firstname, lastname, email) select %s, %s, %s where not exists (select 1 from user where email = %s); select id from user where email = %s limit 1", 
+            params=(self.firstname, self.lastname, self.email, self.email, self.email),
+            commit=True,
+            return_=True,
             as_dict=True
         )
+
+        # id = SNOWFLAKE.run_query(
+        #     query="select id from user where email = %s limit 1", 
+        #     params=(self.email,), 
+        #     return_=True, 
+        #     as_dict=True
+        # )
 
         self.id = id[0]['id']
 
