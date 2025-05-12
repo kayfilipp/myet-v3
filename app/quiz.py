@@ -2,6 +2,7 @@ import streamlit as st
 from models.Assessment import Assessment
 from random import randint
 from components import results
+import asyncio 
 
 def progress_bar(st, assessment: Assessment):
     progress = len(assessment.answered_questions) / ( len(assessment.answered_questions) + len(assessment.questions) )
@@ -80,7 +81,7 @@ if assessment.completed:
     # SAVE SCORE
     if not assessment.saved:
         if st.button("Save This Score", use_container_width=True):
-            assessment.save_assessment()
+            asyncio.run(assessment.save_assessment())
             st.rerun()
     else:
         st.button("Saved!", use_container_width=True, disabled=True)

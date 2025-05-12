@@ -80,7 +80,10 @@ class Assessment:
         
         self.results = df['score'].to_dict()
 
-    def save_assessment(self):
+    async def save_assessment(self):
+
+        self.saved = True 
+
         json_results = json.dumps(self.results)
         query = "insert into assessment(user_id,json_results) select %s, PARSE_JSON(%s)"
         params = (self.user.id, json_results)
@@ -91,8 +94,6 @@ class Assessment:
             return_=False,
             commit=True
         )
-
-        self.saved = True 
 
     @property
     def has_next(self):
