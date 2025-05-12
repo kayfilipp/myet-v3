@@ -68,7 +68,7 @@ assessment_result_id = st.query_params.get('assesment_id')
 # ***************************************************************IF ASSESSMENT ID IS PROVIDED*************************************************************************************** #
 if assessment_result_id:
     profile: Profile = st.session_state['profile']
-    assessment = profile.get_assessment(assessment_result_id)
+    assessment = profile.get_assessment(int(assessment_result_id))
     st.session_state['assessment'] = Assessment(
         user=user,
         saved=True,
