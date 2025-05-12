@@ -1,6 +1,6 @@
 import streamlit as st
 from models.User import User
-from components import sidebar 
+from components import user_sidebar 
 
 st.set_page_config(
     page_title="MYET",
@@ -27,6 +27,8 @@ if not st.experimental_user.is_logged_in:
         position="hidden",
     )
 
+    pg.run()
+
 else:
 
     pages = [app_page, assessment_page, about_page]
@@ -38,15 +40,18 @@ else:
         position="sidebar",
     )
 
-    sidebar.render(st)
+# Head to first page of navigation
+pg.run()
 
-    # save the user as a User object if they don't already exist.
-    if not st.session_state.get('User'):
+# save the user as a User object if they don't already exist and display them in the sidebar.
+if not st.session_state.get('User'):
 
-        user = st.experimental_user
-        firstname = user.get('given_name') if user.get('given_name') else user.get('name')
-        lastname = user.get('family_name')
-        email = user.get('email')
+    user = st.experimental_user
+    firstname = user.get('given_name') if user.get('given_name') else user.get('name')
+    lastname = user.get('family_name')
+    email = user.get('email')
+
+    if email:
 
         _user = User(
             firstname=firstname,
@@ -57,6 +62,4 @@ else:
 
         st.session_state['User'] = _user
 
-# Head to first page of navigation
-pg.run()
-
+        user_sidebar.render(st)
