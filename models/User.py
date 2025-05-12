@@ -28,6 +28,7 @@ class User:
         # )
 
         self.id = id[0]['id']
+        print(self.id, 'id retreived.')
 
     @property
     def name(self):
