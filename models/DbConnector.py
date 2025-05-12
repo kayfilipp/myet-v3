@@ -6,6 +6,8 @@ class SQLite:
 
     def __init__(self, db_path):
         self.db_path = db_path
+        self.con = None 
+        self.cur = None 
 
     def get_con(self):
         self.con = sqlite3.connect(self.db_path)
@@ -13,6 +15,9 @@ class SQLite:
         self.cur = self.con.cursor()
 
     def run_query(self, query, commit=False, return_=True, as_dict=True, params=(), close_after_operation=True):
+
+        if not self.con or self.cur:
+            self.get_con()
 
         self.cur.execute(query,params)
 
