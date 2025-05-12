@@ -1,8 +1,10 @@
 import streamlit as st 
 from models.Assessment import Assessment
+from models.Profile import Profile 
 from random import randint
 from components import results
 import asyncio 
+import json 
 
 def progress_bar(st, assessment: Assessment):
     progress = len(assessment.answered_questions) / ( len(assessment.answered_questions) + len(assessment.questions) )
@@ -53,20 +55,33 @@ def render_questions(st, assessment: Assessment):
 def render_assessment_score_radial_chart(st, scores: dict):
     pass
 
-# ****************************************************************************************************************************************************** #
 
 st.title("The MYET Assessment")
 st.caption("Discover your strengths and share them with others.")
 st.divider()
 
-user = st.session_state['User']
 
-if not st.session_state.get('assessment'):
+
+user = st.session_state['User']
+assessment_result_id = st.query_params.get('assesment_id')
+
+# ***************************************************************IF ASSESSMENT ID IS PROVIDED*************************************************************************************** #
+if assessment_result_id:
+    profile: Profile = st.session_state['profile']
+    assessment = next((assessment for assessment in profile.assessments if assessment.id == assessment_result_id), {})
+    st.session_state['assessment'] = Assessment(
+        user=user,
+        saved=True,
+        results=json.loads(assessment['json_results'])
+    )
+
+# ***************************************************************IF NO ASSESSMENT ID IS PROVIDED*************************************************************************************** #
+elif not st.session_state.get('assessment'):
     st.session_state['assessment'] = Assessment(
         user=user, 
         limit=None, 
         chunk_size=st.secrets['questions_chunk_size'])
-
+    
 assessment : Assessment = st.session_state.get('assessment')
 
 
@@ -117,3 +132,4 @@ else:
         assessment.questions = []
         assessment.submit()
         st.rerun()
+

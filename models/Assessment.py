@@ -16,9 +16,10 @@ class Assessment:
         self.user = user
         self.limit = limit 
         self.chunk_size = chunk_size
-        self.results = results
         self.saved = saved
         self.is_public = is_public
+
+        self.results = results
 
         self.started = False if not self.saved else True 
         self.completed = False if not self.saved else True 

@@ -16,9 +16,9 @@ st.page_link("./app/quiz.py", label="Take Assessment")
 
 st.divider()
 
-if user.id is not None:
+if user.id:
 
-    profile = Profile(user)
+    profile = st.session_state['profile']
     profile.get_assessment_history()
 
     st.subheader("Your Previous Assessments")

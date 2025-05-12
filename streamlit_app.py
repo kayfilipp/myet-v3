@@ -1,5 +1,6 @@
 import streamlit as st
 from models.User import User
+from models.Profile import Profile
 from components import sidebar
 import asyncio 
 
@@ -52,6 +53,8 @@ else:
             lastname=lastname,
             email=email
         )
+
+        st.session_state['profile'] = Profile(st.session_state['User'])
 
         asyncio.run(st.session_state['User'].get_user_id())
 
