@@ -72,11 +72,12 @@ assessment : Assessment = st.session_state.get('assessment')
 if assessment.completed:
     results.render(st, assessment.results)
 
+    # RESTART ASSESSMENT
     if st.button("Restart", use_container_width=True):
         del st.session_state['assessment']
         st.rerun()
 
-    # to-do
+    # SAVE SCORE
     if not assessment.saved:
         if st.button("Save This Score", use_container_width=True):
             assessment.save_assessment()
@@ -84,7 +85,7 @@ if assessment.completed:
     else:
         st.button("Saved!", use_container_width=True, disabled=True)
     
-    # to-do
+    # SHARE WITH SOMEONE
     if st.button("Share", use_container_width=True):
         pass 
 
