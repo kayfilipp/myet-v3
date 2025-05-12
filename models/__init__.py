@@ -10,3 +10,4 @@ DB = SQLite(DB_PATH)
 
 import streamlit as st 
 SNOWFLAKE = SnowFlakeSql(st.secrets['snowflake'])
+SNOWFLAKE.get_con()
