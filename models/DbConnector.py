@@ -8,7 +8,7 @@ class SQLite:
         self.db_path = db_path
 
     def get_con(self):
-        con = sqlite3.connect(self, self.db_path)
+        con = sqlite3.connect(self.db_path)
         con.row_factory = sqlite3.Row
         cur = con.cursor()
 
