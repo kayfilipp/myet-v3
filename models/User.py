@@ -1,4 +1,6 @@
 from . import SNOWFLAKE
+from models.AssessmentScore import AssessmentScore
+import json 
 
 class User:
 
@@ -11,6 +13,12 @@ class User:
         self.lastname = lastname 
         self.email = email 
 
+        self.assessment_scores: list[AssessmentScore] = []
+
+    @property
+    def name(self):
+        return self.firstname + ' ' + self.lastname
+    
     async def get_user_id(self):
 
         SNOWFLAKE.run_query(
@@ -31,6 +39,29 @@ class User:
 
         self.id = id[0]['id']
 
-    @property
-    def name(self):
-        return self.firstname + ' ' + self.lastname
+    async def get_scores(self):
+
+        scores = SNOWFLAKE.run_query(
+            query="select * from assessment where user_id = %s"
+            params = [self.id],
+            as_dict=True,
+            return_=True,
+            close_after_operation=False
+        )
+
+        self.assessment_scores = [
+            AssessmentScore(
+                user=self, 
+                id=score['id'], 
+                results=json.loads(score['json_results']),
+                created_date=score['created_date'],
+                is_public=score['is_public'],
+                saved=True
+            )
+            for score in scores 
+        ]
+
+    async def get_shared_scores(self):
+        #to-do: a method that lets a user see scores people have shared with them.
+        pass 
+

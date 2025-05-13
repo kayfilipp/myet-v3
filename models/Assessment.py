@@ -1,5 +1,6 @@
 from models.Question import Question
 from models.User import User 
+from models.AssessmentScore import AssessmentScore
 import pandas as pd 
 from . import SNOWFLAKE
 import json 
@@ -11,23 +12,19 @@ class Assessment:
     chunk_size: how many questions are displayed at the same time 
     """
 
-    def __init__(self, user: User=None, limit: int=None, chunk_size: int=1, is_public=False, saved=False, results:dict=None):
+    def __init__(self, user: User=None, limit: int=None, chunk_size: int=1):
 
         self.user = user
         self.limit = limit 
         self.chunk_size = chunk_size
-        self.saved = saved
-        self.is_public = is_public
+        self.assessment_score: AssessmentScore = None
 
-        self.results = results
+        self.started = False 
+        self.completed = False 
 
-        self.started = False if not self.saved else True 
-        self.completed = False if not self.saved else True 
-
-        if not self.completed:
-            self.questions = self.__get_questions() 
-            self.answered_questions: list[Question] = []
-            self.current_questions: list[Question] = [] 
+        self.questions = self.__get_questions() 
+        self.answered_questions: list[Question] = []
+        self.current_questions: list[Question] = [] 
 
 
     def __get_questions(self):
@@ -42,9 +39,7 @@ class Assessment:
         next((question for question in self.current_questions if question.id == id), None).answer = answer
 
     def next_n(self):
-        # gets the next n unanswered question and places them in the queue 
-        # places current questions into answered bin
-         
+        # gets the next n unanswered question and places them in the queue + places current questions into answered bin
         assert self.questions != [], "question bank cannot be empty"
 
         self.answered_questions += self.current_questions
@@ -53,14 +48,12 @@ class Assessment:
 
     def last_n(self):
         # puts the current queue back in the question bank and draws from the answered questions 
-
         assert self.answered_questions != [], "answered questions cannot be empty"
 
         # put the current queue away
         self.questions = self.current_questions + self.questions 
 
-        # grab the last n questions we answered, put them in current 
-        # remove them from the answered bank
+        # grab the last n questions we answered, put them in current + remove them from the answered bank
         self.current_questions = self.answered_questions[-self.chunk_size:]
         self.answered_questions = self.answered_questions[:-self.chunk_size]
 
@@ -79,21 +72,11 @@ class Assessment:
         df = df.groupby('facet')['score'].sum().round(2).reset_index()
         df = df.set_index('facet')
         
-        self.results = df['score'].to_dict()
-
-    async def save_assessment(self):
-
-        self.saved = True 
-
-        json_results = json.dumps(self.results)
-        query = "insert into assessment(user_id,json_results) select %s, PARSE_JSON(%s)"
-        params = (self.user.id, json_results)
-
-        SNOWFLAKE.run_query(
-            query=query,
-            params=params,
-            return_=False,
-            commit=True
+        results = df['score'].to_dict()
+        self.assessment_score = AssessmentScore(
+            user=self.user,
+            id=None,
+            results=results
         )
 
     @property

@@ -11,5 +11,6 @@ dependencies = [
     "streamlit",
     "numpy",
     "matplotlib",
-    "snowflake-connector-python"
+    "snowflake-connector-python",
+    "ksuid"
 ]

@@ -1,6 +1,5 @@
 import streamlit as st 
 from models.Assessment import Assessment
-from models.Profile import Profile 
 from random import randint
 from components import results
 import asyncio 
@@ -63,30 +62,18 @@ st.divider()
 
 
 user = st.session_state['User']
-assessment_result_id = st.query_params.get('assessment_id')
-
-# ***************************************************************IF ASSESSMENT ID IS PROVIDED*************************************************************************************** #
-if assessment_result_id:
-    profile: Profile = st.session_state['profile']
-    assessment = profile.get_assessment(int(assessment_result_id))
-
-    st.session_state['assessment'] = Assessment(
-        user=user,
-        saved=True,
-        results=json.loads(assessment['json_results'])
-    )
 
 # ***************************************************************IF NO ASSESSMENT ID IS PROVIDED*************************************************************************************** #
-elif not st.session_state.get('assessment'):
+if not st.session_state.get('assessment'):
     st.session_state['assessment'] = Assessment(
         user=user, 
         limit=None, 
         chunk_size=st.secrets['questions_chunk_size'])
     
-assessment : Assessment = st.session_state.get('assessment')
+assessment : Assessment = st.session_state['assessment']
 
 if assessment.completed:
-    results.render(st, assessment.results)
+    results.render(st, assessment.assessment_score.results)
 
     # RESTART ASSESSMENT
     if st.button("Take Test Again", use_container_width=True):
@@ -95,7 +82,7 @@ if assessment.completed:
         st.rerun()
 
     # SAVE SCORE
-    if not assessment.saved:
+    if not assessment.assessment_score.saved:
         if st.button("Save This Score", use_container_width=True):
             asyncio.run(assessment.save_assessment())
             st.rerun()
