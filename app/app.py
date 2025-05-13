@@ -1,5 +1,4 @@
 import streamlit as st
-from models.Profile import Profile 
 
 st.title("Welcome to your MYET Account!")
 user = st.session_state['User']
@@ -16,21 +15,21 @@ st.page_link("./app/quiz.py", label="Take Assessment")
 
 st.divider()
 
-if user.id:
+# if user.id:
 
-    profile = st.session_state['profile']
-    profile.get_assessment_history()
+#     profile = st.session_state['profile']
+#     profile.get_assessment_history()
 
-    st.subheader("Your Previous Assessments")
-    if len(profile.assessments)>0:
-        for assessment in profile.assessments:
-            id = str(assessment['id'])
-            date_of = assessment['created_date']
+#     st.subheader("Your Previous Assessments")
+#     if len(profile.assessments)>0:
+#         for assessment in profile.assessments:
+#             id = str(assessment['id'])
+#             date_of = assessment['created_date']
 
-            c = st.columns([1,2,6])
-            with c[0]:
-                st.link_button(label=id, url=f"/quiz?assessment_id={id}")
-            with c[1]:
-                st.caption(f"Taken on {date_of}")
-    else:
-        st.caption("You have not taken any assessments.")
+#             c = st.columns([1,2,6])
+#             with c[0]:
+#                 st.link_button(label=id, url=f"/quiz?assessment_id={id}")
+#             with c[1]:
+#                 st.caption(f"Taken on {date_of}")
+#     else:
+#         st.caption("You have not taken any assessments.")
