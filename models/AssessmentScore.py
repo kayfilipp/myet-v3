@@ -44,7 +44,7 @@ class AssessmentScore:
 
 
     async def save(self):
-        query = "insert into assessment(id, user_id,json_results) select %s, %s, PARSE_JSON(%s)"
+        query = "insert into assessment(ksuid, user_id,json_results) select %s, %s, PARSE_JSON(%s)"
         params = (self.id, self.user.id, json.dumps(self.results))
 
         SNOWFLAKE.run_query(
