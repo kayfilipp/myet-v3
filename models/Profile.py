@@ -21,7 +21,7 @@ class Profile:
 
         # check locally 
         if self.assessments != []:
-            search = next((assessment for assessment in self.assessments if assessment.id == id))
+            search = next((assessment for assessment in self.assessments if assessment['id'] == id))
             if search:
                 return search 
             
