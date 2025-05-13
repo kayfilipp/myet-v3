@@ -84,7 +84,8 @@ if assessment.completed:
     # SAVE SCORE
     if not assessment.assessment_score.saved:
         if st.button("Save This Score", use_container_width=True):
-            asyncio.run(assessment.save_assessment())
+            assessment.assessment_score.saved = True # <- speed up loading time
+            asyncio.run(assessment.assessment_score.save())
             st.rerun()
     else:
         st.button("Saved!", use_container_width=True, disabled=True)

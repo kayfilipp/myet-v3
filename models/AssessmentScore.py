@@ -43,7 +43,7 @@ class AssessmentScore:
         self.saved = True 
 
 
-    def save(self):
+    async def save(self):
         query = "insert into assessment(id, user_id,json_results) select %s, %s, PARSE_JSON(%s)"
         params = (self.id, self.user.id, json.dumps(self.results))
 
