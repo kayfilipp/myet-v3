@@ -69,8 +69,7 @@ assessment_result_id = st.query_params.get('assesment_id')
 if assessment_result_id:
     profile: Profile = st.session_state['profile']
     assessment = profile.get_assessment(int(assessment_result_id))
-    st.write(assessment)
-    
+
     st.session_state['assessment'] = Assessment(
         user=user,
         saved=True,
@@ -90,8 +89,9 @@ if assessment.completed:
     results.render(st, assessment.results)
 
     # RESTART ASSESSMENT
-    if st.button("Restart", use_container_width=True):
+    if st.button("Take Test Again", use_container_width=True):
         del st.session_state['assessment']
+        st.switch_page("./app/quiz.py")
         st.rerun()
 
     # SAVE SCORE
