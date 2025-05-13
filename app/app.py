@@ -23,6 +23,11 @@ if user.id:
 
     st.subheader("Your Previous Assessments")
     if len(profile.assessments)>0:
-        st.dataframe(profile.assessments)
+        for assessment in profile.assessments:
+            id = assessment['id']
+            date_of = assessment['created_date']
+            
+            st.link_button(id, f"./quiz?assessment_id={id}")
+            st.caption(f"Taken on {date_of}")
     else:
         st.caption("You have not taken any assessments.")
