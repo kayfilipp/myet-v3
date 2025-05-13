@@ -1,6 +1,5 @@
 from . import SNOWFLAKE
 import json 
-from models.User import User
 import ksuid 
 from datetime import datetime 
 """
@@ -16,7 +15,7 @@ def gen_id():
 
 class AssessmentScore:
 
-    def __init__(self, user: User, id: str = None, results: dict={}, created_date: datetime = datetime.now(), is_public:bool=False, saved:bool=False):
+    def __init__(self, user, id: str = None, results: dict={}, created_date: datetime = datetime.now(), is_public:bool=False, saved:bool=False):
         self.user = user 
         self.id = id or gen_id() # if no id is provided, make one up
         self.results = results
