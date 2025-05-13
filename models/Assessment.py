@@ -1,7 +1,7 @@
 from models.Question import Question
 from models.User import User 
 import pandas as pd 
-from . import DB, SNOWFLAKE
+from . import SNOWFLAKE
 import json 
 
 class Assessment:
