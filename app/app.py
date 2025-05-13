@@ -27,7 +27,10 @@ if user.id:
             id = str(assessment['id'])
             date_of = assessment['created_date']
 
-            st.link_button(label=id, url=f"/quiz?assessment_id={id}")
-            st.caption(f"Taken on {date_of}")
+            c = st.columns([1,2,7])
+            with c[0]:
+                st.link_button(label=id, url=f"/quiz?assessment_id={id}")
+            with c[1]:
+                st.caption(f"Taken on {date_of}")
     else:
         st.caption("You have not taken any assessments.")
