@@ -89,10 +89,10 @@ if assessment.completed:
             st.rerun()
     else:
         st.button("Saved!", use_container_width=True, disabled=True)
-    
-    # SHARE WITH SOMEONE
-    if st.button("Share Results", use_container_width=True):
-        pass 
+
+        st.text_input(label="enter one or more emails separated by a comma to share this result with others.", key="share_emails")
+        if st.button("Share Results", use_container_width=True):
+            pass 
 
 elif assessment.started:
 
