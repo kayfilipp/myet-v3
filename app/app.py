@@ -27,7 +27,7 @@ if user.id:
             id = str(assessment['id'])
             date_of = assessment['created_date']
 
-            c = st.columns([2,2,6])
+            c = st.columns([1,2,6])
             with c[0]:
                 st.link_button(label=id, url=f"/quiz?assessment_id={id}")
             with c[1]:
