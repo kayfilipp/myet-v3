@@ -90,7 +90,7 @@ if assessment.completed:
         st.button("Saved!", use_container_width=True, disabled=True)
     
     # SHARE WITH SOMEONE
-    if st.button("Share", use_container_width=True):
+    if st.button("Share Results", use_container_width=True):
         pass 
 
 elif assessment.started:
