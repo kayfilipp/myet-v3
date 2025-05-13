@@ -56,6 +56,26 @@ class AssessmentScore:
 
         self.saved = True 
 
+    async def delete(self):
+
+        params = [self.id]
+
+        queries = [
+            "delete from assessment_viewers where assessment_ksuid = %s",
+            "delete from assessment where ksuid = %s"
+        ]
+
+
+        for query in queries:
+            SNOWFLAKE.run_query(
+                query=query,
+                params=params,
+                return_=False,
+                commit=True
+            )
+
+        self.saved = False 
+
     def share(self, emails: str):
         assert self.saved, "Must save assessment score before sharing."
         email_list = emails.split(",")

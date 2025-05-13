@@ -88,8 +88,14 @@ if assessment.completed:
             asyncio.run(assessment.assessment_score.save())
             st.rerun()
     else:
-        st.button("Saved!", use_container_width=True, disabled=True)
+        
+        # DELETE SCORE
+        if st.button("Unsave", use_container_width=True):
+            assessment.assessment_score.saved = False
+            asyncio.run(assessment.assessment_score.delete())
+            st.rerun()
 
+        # SHARE SCORE
         st.text_input(label="enter one or more emails separated by a comma to share this result with others.", key="share_emails")
         if st.button("Share Results", use_container_width=True):
             pass 
