@@ -26,11 +26,8 @@ if user.id:
         for assessment in profile.assessments:
             id = str(assessment['id'])
             date_of = assessment['created_date']
-            
-            st.write(id)
-            st.write(date_of)
 
-            st.link_button(label=id, url=f"./quiz?assessment_id={id}")
+            st.link_button(label=id, url=f"/quiz?assessment_id={id}")
             st.caption(f"Taken on {date_of}")
     else:
         st.caption("You have not taken any assessments.")

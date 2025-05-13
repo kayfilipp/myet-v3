@@ -63,7 +63,7 @@ st.divider()
 
 
 user = st.session_state['User']
-assessment_result_id = st.query_params.get('assesment_id')
+assessment_result_id = st.query_params.get('assessment_id')
 
 # ***************************************************************IF ASSESSMENT ID IS PROVIDED*************************************************************************************** #
 if assessment_result_id:
