@@ -13,4 +13,4 @@ def render(st):
         if st.button("🔓 Logout"):
             st.logout()
 
-        st.caption(user.__repr__())
+        # st.caption(user.__repr__())
