@@ -52,6 +52,10 @@ if user.id:
         user.get_shared_scores()
 
     with st.expander("Scores Shared With You", expanded=True):
+
+        for score in user.shared_scores:
+            st.write(score.id)
+
         for score in user.shared_scores:
 
             if st.button("View", key=score.id):
