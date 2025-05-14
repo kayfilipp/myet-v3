@@ -1,6 +1,8 @@
 from components import trait_descriptions, score_chart
 
-def render(st, results):
+def render(st, assessment_score):
+
+    results = assessment_score.results
 
     c = st.columns([1.5,2.5,6])
 
@@ -19,3 +21,9 @@ def render(st, results):
         trait_descriptions.render(st)
 
     st.divider()
+
+    # SHARE SCORE
+    if assessment_score.saved:
+        st.text_input(label="enter one or more emails separated by a comma to share this result with others.", key="share_emails")
+        if st.button("Share Results", use_container_width=True):
+            pass 

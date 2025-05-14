@@ -55,6 +55,8 @@ class AssessmentScore:
         )
 
         self.saved = True 
+        self.user.assessment_scores.append(self)
+
 
     async def delete(self):
 
@@ -65,7 +67,6 @@ class AssessmentScore:
             "delete from assessment where ksuid = %s"
         ]
 
-
         for query in queries:
             SNOWFLAKE.run_query(
                 query=query,
@@ -75,6 +76,7 @@ class AssessmentScore:
             )
 
         self.saved = False 
+        self.user.assessment_scores.remove(self)
 
     def share(self, emails: str):
         assert self.saved, "Must save assessment score before sharing."

@@ -59,10 +59,7 @@ st.title("The MYET Assessment")
 st.caption("Discover your strengths and share them with others.")
 st.divider()
 
-
-
 user = st.session_state['User']
-
 # ***************************************************************IF NO ASSESSMENT ID IS PROVIDED*************************************************************************************** #
 if not st.session_state.get('assessment'):
     st.session_state['assessment'] = Assessment(
@@ -73,7 +70,7 @@ if not st.session_state.get('assessment'):
 assessment : Assessment = st.session_state['assessment']
 
 if assessment.completed:
-    results.render(st, assessment.assessment_score.results)
+    results.render(st, assessment.assessment_score)
 
     # RESTART ASSESSMENT
     if st.button("Take Test Again", use_container_width=True):
@@ -94,11 +91,6 @@ if assessment.completed:
             assessment.assessment_score.saved = False
             asyncio.run(assessment.assessment_score.delete())
             st.rerun()
-
-        # SHARE SCORE
-        st.text_input(label="enter one or more emails separated by a comma to share this result with others.", key="share_emails")
-        if st.button("Share Results", use_container_width=True):
-            pass 
 
 elif assessment.started:
 
