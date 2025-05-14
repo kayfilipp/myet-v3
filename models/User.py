@@ -55,7 +55,7 @@ class User:
                 user=self, 
                 id=score['id'], 
                 results=json.loads(score['json_results']),
-                created_date=datetime.strptime(score['created_date'], "%Y-%m-%d %H:%M:%S.%f"),
+                created_date=score['created_date'],
                 is_public=score['is_public'],
                 saved=True
             )
