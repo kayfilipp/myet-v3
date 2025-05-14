@@ -23,8 +23,8 @@ if user.id:
         user.get_scores()
 
     for score in user.assessment_scores:
-        st.caption(f'Taken on {score.created_date}')
-        st.table([score.results])
+        st.markdown(unsafe_allow_html=True, body=f"Taken on {score.created_date}. <button>View</button> ")
+        st.dataframe([score.results])
 
 # if user.id:
 
