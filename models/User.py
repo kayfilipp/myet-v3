@@ -42,7 +42,7 @@ class User:
     async def get_scores(self):
 
         scores = SNOWFLAKE.run_query(
-            query="select * from assessment where user_id = %s",
+            query="select ksuid as id, json_results, created_date, is_public from assessment where user_id = %s",
             params = [self.id],
             as_dict=True,
             return_=True,
