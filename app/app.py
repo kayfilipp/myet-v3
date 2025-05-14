@@ -23,8 +23,12 @@ if user.id:
         user.get_scores()
 
     for score in user.assessment_scores:
-        st.dataframe([score.results])
-
+        st.caption(f'Taken on {score.created_date}')
+        c = st.columns([8,2])
+        with c[0]:
+            st.dataframe([score.results])
+        with c[1]:
+            st.button("View")
 
 # if user.id:
 
