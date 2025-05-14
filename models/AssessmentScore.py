@@ -92,7 +92,7 @@ class AssessmentScore:
         )
 
         SNOWFLAKE.run_query(
-            query="insert into viewers_{self.id} (email, assessment_ksuid) values (%s, %s)",
+            query=f"insert into viewers_{self.id} (email, assessment_ksuid) values (%s, %s)",
             params=viewers,
             return_=False,
             execute_many=True,
