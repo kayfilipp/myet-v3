@@ -83,24 +83,38 @@ class AssessmentScore:
         email_list = emails.split(",")
 
         viewers = [(email, self.id) for email in email_list]
+        table_name = f"viewers_{self.id}"
 
-        query = f"""
-        create temporary table viewers_{self.id} (email varchar(255), assessment_ksuid varchar(255));
-        insert into viewers_{self.id} (email, assessment_ksuid) values (%s, %s);
-
-        merge into assessment_viewers AS target
-        using viewers_{self.id} AS source
-            on target.assessment_ksuid = source.assessment_ksuid 
-            and target.email = source.email 
-        when not matched then 
-            insert (assessment_ksuid, email) values (source.assessment_ksuid, source.email);
-        """
-
+        # Step 1: Create Temporary Table
         SNOWFLAKE.run_query(
-            query=query,
-            execute_many=True,
+            query=f"CREATE TEMPORARY TABLE {table_name} (email VARCHAR(255), assessment_ksuid VARCHAR(255))",
+            return_=False,
+            commit=True,
+            close_after_operation=False
+        )
+
+        # Step 2: Insert Data
+        SNOWFLAKE.run_query(
+            query=f"INSERT INTO {table_name} (email, assessment_ksuid) VALUES (%s, %s)",
             params=viewers,
+            return_=False,
+            execute_many=True,
+            commit=True,
+            close_after_operation=False
+        )
+
+        # Step 3: Merge Data
+        SNOWFLAKE.run_query(
+            query=f"""
+            MERGE INTO assessment_viewers AS target
+            USING {table_name} AS source
+                ON target.assessment_ksuid = source.assessment_ksuid 
+                AND target.email = source.email 
+            WHEN NOT MATCHED THEN 
+                INSERT (assessment_ksuid, email) VALUES (source.assessment_ksuid, source.email)
+            """,
             return_=False,
             commit=True,
             close_after_operation=True
         )
+
