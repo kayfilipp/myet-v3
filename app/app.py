@@ -17,15 +17,14 @@ st.page_link("./app/quiz.py", label="Take Assessment")
 
 st.divider()
 
-if not user.id:
-    st.stop() # wait until we have the user id
+if user.id:
 
-if not user.assessment_scores:
-    asyncio.run(user.get_scores())
-else:
+    if not user.assessment_scores:
+        asyncio.run(user.get_scores())
+    else:
 
-    for score in user.assessment_scores:
-        st.table(score.results)
+        for score in user.assessment_scores:
+            st.table(score.results)
 
 
 # if user.id:
