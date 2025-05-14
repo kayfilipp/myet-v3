@@ -81,3 +81,35 @@ class AssessmentScore:
     def share(self, emails: str):
         assert self.saved, "Must save assessment score before sharing."
         email_list = emails.split(",")
+
+        viewers = [{"email": email, "assessment_ksuid": self.id} for email in email_list]
+
+        SNOWFLAKE.run_query(
+            query=f"create temporary table viewers_{self.id} (email varchar(255), assessment_ksuid varchar(255))",
+            return_=False,
+            commit=False,
+            close_after_operation=False 
+        )
+
+        SNOWFLAKE.run_query(
+            query="insert into viewers_{self.id} (email, assessment_ksuid) values (%s, %s)",
+            params=viewers,
+            return_=False,
+            execute_many=True,
+            commit=False,
+            close_after_operation=False
+        )
+
+        SNOWFLAKE.run_query(
+            query=f"""
+            merge into assessment_viewers AS target
+            using viewers_{self.id} AS source
+                on target.assessment_ksuid = source.assessment_ksuid 
+                and target.email = source.email 
+            WHEN NOT MATCHED THEN 
+                INSERT (assessment_ksuid, email) VALUES (source.assessment_ksuid, source.email);
+            """,
+            return_=False,
+            commit=True,
+            close_after_operation=True
+        )

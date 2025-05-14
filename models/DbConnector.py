@@ -14,12 +14,12 @@ class SQLite:
         self.con.row_factory = sqlite3.Row
         self.cur = self.con.cursor()
 
-    def run_query(self, query, commit=False, return_=True, as_dict=True, params=(), close_after_operation=True):
+    def run_query(self, query, execute_many=False, commit=False, return_=True, as_dict=True, params=(), close_after_operation=True):
 
         if not self.con or self.cur:
             self.get_con()
 
-        self.cur.execute(query,params)
+        self.cur.execute(query,params) if not execute_many else self.cur.executemany(query, params)
 
         if commit:
             self.con.commit()
