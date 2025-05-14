@@ -84,31 +84,21 @@ class AssessmentScore:
 
         viewers = [(email, self.id) for email in email_list]
 
-        SNOWFLAKE.run_query(
-            query=f"create temporary table viewers_{self.id} (email varchar(255), assessment_ksuid varchar(255))",
-            return_=False,
-            commit=False,
-            close_after_operation=False 
-        )
+        query = f"""
+        create temporary table viewers_{self.id} (email varchar(255), assessment_ksuid varchar(255));
+        insert into viewers_{self.id} (email, assessment_ksuid) values (%s, %s);
+
+        merge into assessment_viewers AS target
+        using viewers_{self.id} AS source
+            on target.assessment_ksuid = source.assessment_ksuid 
+            and target.email = source.email 
+        when not matched then 
+            insert (assessment_ksuid, email) values (source.assessment_ksuid, source.email);
+        """
 
         SNOWFLAKE.run_query(
-            query=f"insert into viewers_{self.id} (email, assessment_ksuid) values (%s, %s)",
+            query=query,
             params=viewers,
-            return_=False,
-            execute_many=True,
-            commit=False,
-            close_after_operation=False
-        )
-
-        SNOWFLAKE.run_query(
-            query=f"""
-            merge into assessment_viewers AS target
-            using viewers_{self.id} AS source
-                on target.assessment_ksuid = source.assessment_ksuid 
-                and target.email = source.email 
-            WHEN NOT MATCHED THEN 
-                INSERT (assessment_ksuid, email) VALUES (source.assessment_ksuid, source.email);
-            """,
             return_=False,
             commit=True,
             close_after_operation=True
