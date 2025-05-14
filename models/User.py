@@ -51,6 +51,9 @@ class User:
             close_after_operation=False
         )
 
+        if len(scores) == 0:
+            return 
+
         self.assessment_scores = [
             AssessmentScore(
                 user=self, 
@@ -83,6 +86,9 @@ class User:
             as_dict=True,
             close_after_operation=False
         )
+
+        if len(scores) == 0:
+            return
 
         self.shared_scores = [
             AssessmentScore(
