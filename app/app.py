@@ -1,7 +1,9 @@
 import streamlit as st
+from models.User import User 
+import asyncio 
 
 st.title("Welcome to your MYET Account!")
-user = st.session_state['User']
+user : User = st.session_state['User']
 
 if not st.experimental_user["email_verified"]:
     st.warning("Please verify your email and login back to unlock all features")
@@ -14,6 +16,17 @@ st.image(st.experimental_user.get("picture", ".\assets\default_profile.jpg"))
 st.page_link("./app/quiz.py", label="Take Assessment")
 
 st.divider()
+
+if not user.id:
+    st.stop() # wait until we have the user id
+
+if not user.assessment_scores:
+    asyncio.run(user.get_scores())
+else:
+
+    for score in user.assessment_scores:
+        st.table(score.results)
+
 
 # if user.id:
 
