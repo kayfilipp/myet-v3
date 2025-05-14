@@ -82,7 +82,7 @@ class AssessmentScore:
         assert self.saved, "Must save assessment score before sharing."
         email_list = emails.split(",")
 
-        viewers = [{"email": email, "assessment_ksuid": self.id} for email in email_list]
+        viewers = [(email, self.id) for email in email_list]
 
         SNOWFLAKE.run_query(
             query=f"create temporary table viewers_{self.id} (email varchar(255), assessment_ksuid varchar(255))",
