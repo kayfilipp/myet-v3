@@ -24,24 +24,6 @@ if user.id:
         user.get_scores()
 
     for score in user.assessment_scores:
-        st.markdown(unsafe_allow_html=True, body=f"<button>View</button> Taken on {score.created_date.strptime("%Y-%m-%d %H:%M")} ")
+        st.markdown(unsafe_allow_html=True, body=f"<button>View</button> Taken on {score.created_date.strftime("%Y-%m-%d %H:%M")} ")
         st.dataframe([score.results])
 
-# if user.id:
-
-#     profile = st.session_state['profile']
-#     profile.get_assessment_history()
-
-#     st.subheader("Your Previous Assessments")
-#     if len(profile.assessments)>0:
-#         for assessment in profile.assessments:
-#             id = str(assessment['id'])
-#             date_of = assessment['created_date']
-
-#             c = st.columns([1,2,6])
-#             with c[0]:
-#                 st.link_button(label=id, url=f"/quiz?assessment_id={id}")
-#             with c[1]:
-#                 st.caption(f"Taken on {date_of}")
-#     else:
-#         st.caption("You have not taken any assessments.")
