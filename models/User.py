@@ -15,6 +15,7 @@ class User:
         self.email = email 
 
         self.assessment_scores: list[AssessmentScore] = []
+        self.shared_scores: list[AssessmentScore] = []
 
     @property
     def name(self):
