@@ -76,8 +76,9 @@ class User:
             from assessment a 
             inner join user u on user_id = a.user_id
             inner join assessment_viewers av on av.assessment_ksuid = a.ksuid 
-            where av.email = {self.email}
+            where av.email = %s
             """,
+            params=[self.email]
             return_=True,
             as_dict=True,
             close_after_operation=False
