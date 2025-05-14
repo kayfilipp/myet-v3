@@ -98,6 +98,7 @@ class AssessmentScore:
 
         SNOWFLAKE.run_query(
             query=query,
+            execute_many=True,
             params=viewers,
             return_=False,
             commit=True,
