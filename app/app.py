@@ -32,7 +32,7 @@ if user.id:
             del st.session_state['view_score']
             st.rerun()
 
-        results.render(st, view_score.results)
+        results.render(st, view_score)
         st.stop()
 
     with st.expander("Your Previous Scores", expanded=True):
