@@ -28,7 +28,7 @@ if user.id:
         with c[0]:
             st.dataframe([score.results])
         with c[1]:
-            st.button("View")
+            st.button("View", key=score.id)
 
 # if user.id:
 
