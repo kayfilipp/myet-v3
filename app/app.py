@@ -1,7 +1,6 @@
 import streamlit as st
 from models.User import User 
-import asyncio 
-from datetime import datetime 
+from components import results
 
 st.title("Welcome to your MYET Account!")
 user : User = st.session_state['User']
@@ -23,12 +22,25 @@ if user.id:
     if not user.assessment_scores:
         user.get_scores()
 
+    # show score if the user has selected one, otherwise display all scores.
+    # really got find an alt to this.
+
+    view_score = st.session_state.get('view_score')
+
+    if view_score:
+        if st.button("Clear"):
+            del st.session_state['view_score']
+            st.rerun()
+
+        results.render(st. view_score.results)
+        st.stop()
+
     with st.expander("Your Previous Scores"):
         for score in user.assessment_scores:
 
             if st.button("View", key=score.id):
                 st.session_state['view_score'] = score 
-                st.switch_page(st.Page("./app/result.py", url_path="/result"))
+                st.rerun()
 
             st.dataframe([score.results])
             st.caption(f"taken on {score.created_date.strftime("%Y-%m-%d %H:%M")}")
