@@ -31,6 +31,8 @@ class SQLite:
         
         if close_after_operation:
             self.con.close()
+            self.con = None 
+            self.cur = None 
 
         return data 
 
