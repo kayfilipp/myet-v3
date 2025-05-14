@@ -85,4 +85,4 @@ def render(st: streamlit, scores: dict):
     """
 
     # Embed the chart in Streamlit with a larger canvas
-    st.components.v1.html(html_code, height=550, width=550)  # Increase iframe size
+    st.components.v1.html(html_code, height=350, width=550)  # Increase iframe size
