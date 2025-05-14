@@ -78,7 +78,7 @@ class AssessmentScore:
         self.saved = False 
         self.user.assessment_scores.remove(self)
 
-    def share(self, emails: str):
+    async def share(self, emails: str):
         assert self.saved, "Must save assessment score before sharing."
         email_list = emails.split(",")
 
