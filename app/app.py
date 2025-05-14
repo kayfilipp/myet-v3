@@ -28,7 +28,8 @@ if user.id:
 
             if st.button("View", key=score.id):
                 st.session_state['view_score'] = score 
-                st.switch_page("./app/result.py")
+                st.switch_page(st.Page("./app/result.py"))
+
             st.dataframe([score.results])
             st.caption(f"taken on {score.created_date.strftime("%Y-%m-%d %H:%M")}")
 
