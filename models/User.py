@@ -39,7 +39,7 @@ class User:
 
         self.id = id[0]['id']
 
-    async def get_scores(self):
+    def get_scores(self):
 
         scores = SNOWFLAKE.run_query(
             query="select ksuid as id, json_results, created_date, is_public from assessment where user_id = %s",
@@ -60,6 +60,9 @@ class User:
             )
             for score in scores 
         ]
+
+    async def get_scores_async(self):
+        self.get_scores()
 
     async def get_shared_scores(self):
         #to-do: a method that lets a user see scores people have shared with them.

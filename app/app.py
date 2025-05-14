@@ -20,11 +20,10 @@ st.divider()
 if user.id:
 
     if not user.assessment_scores:
-        asyncio.run(user.get_scores())
-    else:
+        user.get_scores()
 
-        for score in user.assessment_scores:
-            st.table(score.results)
+    for score in user.assessment_scores:
+        st.table(score.results)
 
 
 # if user.id:
