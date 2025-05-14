@@ -32,7 +32,7 @@ class Assessment:
         if self.limit:
             query += f" limit {self.limit}"
 
-        questions = SNOWFLAKE.run_query(query)
+        questions = SNOWFLAKE.run_query(query, close_after_operation=False)
         return [Question(**row) for row in questions]
     
     def answer_question(self, id, answer):
