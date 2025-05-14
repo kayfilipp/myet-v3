@@ -83,8 +83,11 @@ class AssessmentScore:
         assert self.saved, "Must save assessment score before sharing."
         email_list = emails.split(",")
 
-        viewers = [(email, self.id) for email in email_list]
+        viewers = [(email, self.id) for email in email_list if email != self.user.email]
         table_name = f"viewers_{self.id}"
+
+        if len(viewers) == 0:
+            return
 
         # Step 1: Create Temporary Table
         self.SNOWFLAKE.run_query(
