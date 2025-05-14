@@ -71,7 +71,7 @@ class User:
         scores = SNOWFLAKE.run_query(
             query=f"""
             select 
-                a.ksuid as id, a.json_results, a.created_date
+                a.ksuid as id, a.json_results, a.created_date,
                 u.email, u.firstname, u.lastname
             from assessment a 
             inner join user u on user_id = a.user_id
