@@ -13,8 +13,8 @@ def render(st: streamlit, scores: dict):
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <style>
             .chart-container {{
-                width: 500px;  
-                height: 500px; 
+                width: 350px;  
+                height: 350px; 
                 display: flex;
                 justify-content: left;
                 align-items: left;
