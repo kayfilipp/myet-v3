@@ -88,7 +88,7 @@ class AssessmentScore:
 
         # Step 1: Create Temporary Table
         self.SNOWFLAKE.run_query(
-            query=f"CREATE TEMPORARY TABLE {table_name} (email VARCHAR(255), assessment_ksuid VARCHAR(255))",
+            query=f"CREATE OR REPLACE TEMPORARY TABLE {table_name} (email VARCHAR(255), assessment_ksuid VARCHAR(255))",
             return_=False,
             commit=True,
             close_after_operation=False
@@ -118,4 +118,3 @@ class AssessmentScore:
             commit=True,
             close_after_operation=True
         )
-
