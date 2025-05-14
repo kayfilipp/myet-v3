@@ -119,5 +119,5 @@ class AssessmentScore:
             """,
             return_=False,
             commit=True,
-            close_after_operation=True
+            close_after_operation=False
         )
