@@ -23,7 +23,7 @@ if user.id:
         user.get_scores()
 
     for score in user.assessment_scores:
-        st.table([score.results])
+        st.dataframe([score.results])
 
 
 # if user.id:
