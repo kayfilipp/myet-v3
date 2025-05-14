@@ -16,7 +16,7 @@ class SQLite:
 
     def run_query(self, query, execute_many=False, commit=False, return_=True, as_dict=True, params=(), close_after_operation=True):
 
-        if not self.con or self.cur:
+        if not self.con or not self.cur:
             self.get_con()
 
         self.cur.execute(query,params) if not execute_many else self.cur.executemany(query, params)
@@ -41,6 +41,7 @@ class SnowFlakeSql(SQLite):
 
     def __init__(self, snowflake_config):
         self.config = snowflake_config 
+        self.get_con()
 
     def get_con(self):
         self.con = snowflake.connector.connect(**self.config)
