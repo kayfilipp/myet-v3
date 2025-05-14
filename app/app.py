@@ -24,7 +24,7 @@ if user.id:
 
     for score in user.assessment_scores:
         st.caption(f'Taken on {score.created_date}')
-        c = st.columns([8,2])
+        c = st.columns([4,2])
         with c[0]:
             st.dataframe([score.results])
         with c[1]:
