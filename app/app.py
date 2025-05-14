@@ -51,9 +51,8 @@ if user.id:
     if not user.shared_scores:
         user.get_shared_scores()
 
-    st.write(len(user.shared_scores))
-
     with st.expander("Scores Shared With You", expanded=True):
+        st.write(f"{len(user.shared_scores)} shared with you.")
         for score in user.shared_scores:
 
             if st.button("View", key=score.id):
