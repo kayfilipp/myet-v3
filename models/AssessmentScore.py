@@ -107,9 +107,6 @@ class AssessmentScore:
         # Step 3: Merge Data
         self.SNOWFLAKE.run_query(
             query=f"""
-
-            with 
-
             MERGE INTO assessment_viewers AS target
             USING {table_name} AS source
                 ON target.assessment_ksuid = source.assessment_ksuid 
