@@ -78,7 +78,7 @@ class User:
             inner join assessment_viewers av on av.assessment_ksuid = a.ksuid 
             where av.email = %s
             """,
-            params=[self.email]
+            params=[self.email],
             return_=True,
             as_dict=True,
             close_after_operation=False
