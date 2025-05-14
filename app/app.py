@@ -61,6 +61,6 @@ if user.id:
                 st.rerun()
 
             st.dataframe([score.results])
-            st.caption(f"taken on {score.created_date.strftime("%Y-%m-%d %H:%M")}")
+            st.caption(f"taken on {score.created_date.strftime("%Y-%m-%d %H:%M")} by {score.user.name}")
 
 
