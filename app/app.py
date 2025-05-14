@@ -53,7 +53,7 @@ if user.id:
 
     st.write(len(user.shared_scores))
 
-    with st.expander("Scores Shared With You", expanded=False):
+    with st.expander("Scores Shared With You", expanded=True):
         for score in user.shared_scores:
 
             if st.button("View", key=score.id):
