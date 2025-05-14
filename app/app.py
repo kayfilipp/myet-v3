@@ -28,14 +28,14 @@ if user.id:
     view_score = st.session_state.get('view_score')
 
     if view_score:
-        if st.button("Clear"):
+        if st.button("Back"):
             del st.session_state['view_score']
             st.rerun()
 
         results.render(st, view_score.results)
         st.stop()
 
-    with st.expander("Your Previous Scores"):
+    with st.expander("Your Previous Scores", expanded=True):
         for score in user.assessment_scores:
 
             if st.button("View", key=score.id):
