@@ -73,12 +73,12 @@ class User:
         #to-do: a method that lets a user see scores people have shared with them.
         scores = SNOWFLAKE.run_query(
             query=f"""
-            select 
+            select  
                 a.ksuid as id, a.json_results, a.created_date, a.is_public,
                 u.email, u.firstname, u.lastname
-            from assessment a 
-            inner join user u on user_id = a.user_id
-            inner join assessment_viewers av on av.assessment_ksuid = a.ksuid 
+            from assessment_viewers av 
+            inner join assessment a on a.ksuid = av.assessment_ksuid
+            inner join user u on u.id = a.user_id
             where av.email = %s
             """,
             params=[self.email],
