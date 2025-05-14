@@ -22,12 +22,13 @@ class AssessmentScore:
         self.created_date = created_date
         self.is_public = is_public
         self.saved = saved 
+        self.SNOWFLAKE = SNOWFLAKE
 
     def load_from_db(self):
         query = "select * from assessment where user_id = %s and id = %s limit 1"
         params = (self.user.id, self.id)
 
-        _ = SNOWFLAKE.run_query(
+        _ = self.SNOWFLAKE.run_query(
             query=query,
             params=params,
             return_=True,
@@ -47,7 +48,7 @@ class AssessmentScore:
         query = "insert into assessment(ksuid, user_id,json_results) select %s, %s, PARSE_JSON(%s)"
         params = (self.id, self.user.id, json.dumps(self.results))
 
-        SNOWFLAKE.run_query(
+        self.SNOWFLAKE.run_query(
             query=query,
             params=params,
             return_=False,
@@ -68,7 +69,7 @@ class AssessmentScore:
         ]
 
         for query in queries:
-            SNOWFLAKE.run_query(
+            self.SNOWFLAKE.run_query(
                 query=query,
                 params=params,
                 return_=False,
@@ -86,7 +87,7 @@ class AssessmentScore:
         table_name = f"viewers_{self.id}"
 
         # Step 1: Create Temporary Table
-        SNOWFLAKE.run_query(
+        self.SNOWFLAKE.run_query(
             query=f"CREATE TEMPORARY TABLE {table_name} (email VARCHAR(255), assessment_ksuid VARCHAR(255))",
             return_=False,
             commit=True,
@@ -94,7 +95,7 @@ class AssessmentScore:
         )
 
         # Step 2: Insert Data
-        SNOWFLAKE.run_query(
+        self.SNOWFLAKE.run_query(
             query=f"INSERT INTO {table_name} (email, assessment_ksuid) VALUES (%s, %s)",
             params=viewers,
             return_=False,
@@ -104,8 +105,11 @@ class AssessmentScore:
         )
 
         # Step 3: Merge Data
-        SNOWFLAKE.run_query(
+        self.SNOWFLAKE.run_query(
             query=f"""
+
+            with 
+
             MERGE INTO assessment_viewers AS target
             USING {table_name} AS source
                 ON target.assessment_ksuid = source.assessment_ksuid 
