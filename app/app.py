@@ -30,9 +30,10 @@ if user.id:
     if view_score:
         if st.button("Back"):
             del st.session_state['view_score']
+            del st.session_state['enable_management']
             st.rerun()
 
-        results.render(st, view_score)
+        results.render(st, view_score, st.session_state['enable_management'])
         st.stop()
 
     with st.expander("Your Previous Scores", expanded=True):
@@ -40,8 +41,25 @@ if user.id:
 
             if st.button("View", key=score.id):
                 st.session_state['view_score'] = score 
+                st.session_state['enable_management'] = True
                 st.rerun()
 
             st.dataframe([score.results])
             st.caption(f"taken on {score.created_date.strftime("%Y-%m-%d %H:%M")}")
+
+
+    if not user.shared_scores:
+        user.get_shared_scores()
+
+    with st.expander("Scores Shared With You", expanded=False):
+        for score in user.shared_scores:
+
+            if st.button("View", key=score.id):
+                st.session_state['view_score'] = score 
+                st.session_state['enable_management'] = False
+                st.rerun()
+
+            st.dataframe([score.results])
+            st.caption(f"taken on {score.created_date.strftime("%Y-%m-%d %H:%M")}")
+
 

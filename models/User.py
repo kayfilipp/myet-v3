@@ -65,7 +65,33 @@ class User:
     async def get_scores_async(self):
         self.get_scores()
 
-    async def get_shared_scores(self):
+    def get_shared_scores(self):
         #to-do: a method that lets a user see scores people have shared with them.
-        pass 
+        scores = SNOWFLAKE.run_query(
+            query=f"""
+            select 
+                a.ksuid as id, a.json_results, a.created_date
+                u.email, u.firstname, u.lastname
+            from assessment a 
+            inner join user u on user_id = a.user_id
+            inner join assessment_viewers av on av.assessment_ksuid = a.ksuid 
+            where av.email = {self.email}
+            """,
+            return_=True,
+            as_dict=True,
+            close_after_operation=False
+        )
+
+        self.shared_scores = [
+            AssessmentScore(
+                user=User(score['firstname'], score['lastname'], score['email']),
+                id=score['id'],
+                results=json.loads(score['json_results']),
+                created_date=score['created_date'],
+                is_public=score['is_public'],
+                saved=True
+            )
+            for score in scores
+        ]
+
 

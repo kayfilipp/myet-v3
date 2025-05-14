@@ -1,7 +1,7 @@
 from components import trait_descriptions, score_chart
 import asyncio 
 
-def render(st, assessment_score):
+def render(st, assessment_score, enable_management=True):
 
     results = assessment_score.results
 
@@ -22,6 +22,10 @@ def render(st, assessment_score):
         trait_descriptions.render(st)
 
     st.divider()
+
+    if not enable_management:
+        # don't let the user share / delete / edit etc
+        return 
 
     # SHARE SCORE
     if assessment_score.saved:
