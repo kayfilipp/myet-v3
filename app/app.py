@@ -1,6 +1,7 @@
 import streamlit as st
 from models.User import User 
 import asyncio 
+from datetime import datetime 
 
 st.title("Welcome to your MYET Account!")
 user : User = st.session_state['User']
@@ -23,7 +24,7 @@ if user.id:
         user.get_scores()
 
     for score in user.assessment_scores:
-        st.markdown(unsafe_allow_html=True, body=f"Taken on {score.created_date}. <button>View</button> ")
+        st.markdown(unsafe_allow_html=True, body=f"<button>View</button> Taken on {score.created_date.strptime("%Y-%m-%d %H:%M")} ")
         st.dataframe([score.results])
 
 # if user.id:

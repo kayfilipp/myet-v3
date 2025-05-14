@@ -1,6 +1,7 @@
 from . import SNOWFLAKE
 from models.AssessmentScore import AssessmentScore
 import json 
+from datetime import datetime 
 
 class User:
 
@@ -54,7 +55,7 @@ class User:
                 user=self, 
                 id=score['id'], 
                 results=json.loads(score['json_results']),
-                created_date=score['created_date'],
+                created_date=datetime.strptime(score['created_date'], "%Y-%m-%d %H:%M:%S.%f"),
                 is_public=score['is_public'],
                 saved=True
             )
