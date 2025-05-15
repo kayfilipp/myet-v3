@@ -29,7 +29,23 @@ def render(st, assessment_score, enable_management=True):
 
     # SHARE SCORE
     if assessment_score.saved:
+        
         st.text_input(label="enter one or more emails separated by a comma to share this result with others.", key="share_emails")
         if st.button("Share Results", use_container_width=True):
             asyncio.run(assessment_score.share(st.session_state['share_emails']))
             st.caption("Shared!")
+
+        # DELETE SCORE
+        if st.button("Remove From Saved", use_container_width=True):
+            assessment_score.saved = False
+            asyncio.run(assessment_score.delete())
+            st.rerun()
+    
+    # SAVE SCORE
+    else:
+
+        if st.button("Save This Score", use_container_width=True):
+            assessment_score.saved = True # <- speed up loading time
+            asyncio.run(assessment_score.save())
+            st.rerun()
+        

@@ -70,27 +70,13 @@ if not st.session_state.get('assessment'):
 assessment : Assessment = st.session_state['assessment']
 
 if assessment.completed:
-    results.render(st, assessment.assessment_score)
+    results.render(st, assessment.assessment_score, enable_management=True)
 
     # RESTART ASSESSMENT
     if st.button("Take Test Again", use_container_width=True):
         del st.session_state['assessment']
         st.switch_page("./app/quiz.py")
         st.rerun()
-
-    # SAVE SCORE
-    if not assessment.assessment_score.saved:
-        if st.button("Save This Score", use_container_width=True):
-            assessment.assessment_score.saved = True # <- speed up loading time
-            asyncio.run(assessment.assessment_score.save())
-            st.rerun()
-    else:
-        
-        # DELETE SCORE
-        if st.button("Unsave", use_container_width=True):
-            assessment.assessment_score.saved = False
-            asyncio.run(assessment.assessment_score.delete())
-            st.rerun()
 
 elif assessment.started:
 
