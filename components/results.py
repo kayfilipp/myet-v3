@@ -29,7 +29,7 @@ def render(st: streamlit, assessment_score, enable_management=True):
     c = st.columns([2,2.5,2, 8], gap='medium')
     with c[0]:
         st.subheader(persona.name)
-        st.caption(persona.description)
+        st.caption(persona.blurb)
         st.image(persona.image_path)
 
     with c[1]:
