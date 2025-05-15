@@ -107,11 +107,14 @@ elif assessment.started:
 else:
 
     num_questions = len(assessment.questions)
+
+    c = st.columns([1,1,8])
+
     st.text(f"This assessment will consist of {num_questions} questions. Feel free to explore our website and take breaks - your progress will be saved.")        
-    st.button("Start", on_click=assessment.start)
+    c[0].button("Start", on_click=assessment.start)
 
     # add a demo button because I'm lazy.
-    if st.button("Demo"):
+    if c[1].button("Show Me A Demo", type='primary'):
         st.session_state['demo'] = True 
         for question in assessment.questions:
             question.answer = randint(1,8)
