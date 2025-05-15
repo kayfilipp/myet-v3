@@ -44,7 +44,7 @@ def render(st, assessment_score, enable_management=True):
     # SAVE SCORE
     else:
 
-        if st.button("Save This Score", use_container_width=True):
+        if st.button("Save This Score", use_container_width=True, type='primary'):
             assessment_score.saved = True # <- speed up loading time
             asyncio.run(assessment_score.save())
             st.rerun()
