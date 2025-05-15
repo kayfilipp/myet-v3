@@ -83,7 +83,7 @@ class AssessmentScore:
         assert self.saved, "Must save assessment score before sharing."
         email_list = emails.split(",")
 
-        viewers = [(email, self.id) for email in email_list if email != self.user.email]
+        viewers = [(email.lower(), self.id) for email in email_list if email != self.user.email]
         table_name = f"viewers_{self.id}"
 
         if len(viewers) == 0:
