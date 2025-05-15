@@ -37,6 +37,8 @@ def render(st: streamlit, assessment_score, enable_management=True):
             # don't let the user share / delete / edit etc
             return 
 
+        st.subheader("Manage Your Score")
+
         # SHARE SCORE
         if assessment_score.saved:
             
