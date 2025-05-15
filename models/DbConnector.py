@@ -43,6 +43,8 @@ class SnowFlakeSql(SQLite):
 
     def __init__(self, snowflake_config):
         self.config = snowflake_config 
+        self.con = None 
+        self.cur = None 
 
     def get_con(self):
         self.con = snowflake.connector.connect(**self.config)
