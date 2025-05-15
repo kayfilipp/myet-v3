@@ -22,6 +22,11 @@ def render(st: streamlit, assessment_score, enable_management=True):
         st.caption("Who doesn't like pictures?")
         score_chart.render(st, results)
 
+    c = st.columns([4.5, 8])
+
+    with c[0]:
+        st.subheader("About You")
+        st.write("A worker bee is someone who thrives on productivity, constantly moving from one task to the next with a strong sense of responsibility. They are diligent, reliable, and often the backbone of any team, ensuring that projects are completed efficiently. While they may not seek the spotlight, their dedication and perseverance make a significant impact, as they take pride in their work and find satisfaction in keeping things running smoothly. Their energy is infectious, inspiring others to stay focused and push forward.")
 
     st.divider()
 
