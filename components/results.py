@@ -1,7 +1,8 @@
 from components import trait_descriptions, score_chart
 import asyncio 
+import streamlit 
 
-def render(st, assessment_score, enable_management=True):
+def render(st: streamlit, assessment_score, enable_management=True):
 
     results = assessment_score.results
 
@@ -44,7 +45,7 @@ def render(st, assessment_score, enable_management=True):
     # SAVE SCORE
     else:
 
-        if st.button("Save This Score", use_container_width=True, type='primary'):
+        if st.button("Save This Score", use_container_width=True, type="primary"):
             assessment_score.saved = True # <- speed up loading time
             asyncio.run(assessment_score.save())
             st.rerun()
