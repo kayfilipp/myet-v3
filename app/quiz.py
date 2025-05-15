@@ -108,7 +108,7 @@ else:
 
     num_questions = len(assessment.questions)
 
-    c = st.columns([1,1,8])
+    c = st.columns([1,1,10])
 
     st.text(f"This assessment will consist of {num_questions} questions. Feel free to explore our website and take breaks - your progress will be saved.")        
     c[0].button("Start", on_click=assessment.start)
