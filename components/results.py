@@ -8,7 +8,6 @@ def render(st: streamlit, assessment_score, enable_management=True):
 
     c = st.columns([2,2.5,2, 8], gap='medium')
     with c[0]:
-        st.caption("You are...")
         st.subheader("The Worker Bee")
         st.image("./assets/workerbee.png")
 
