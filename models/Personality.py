@@ -1,18 +1,26 @@
+import math 
+
 class Personality:
 
-    def __init__(self, name: str, description: str, image_path: str, scores: dict):
+    def __repr__(self):
+        return f"Personality({self.name})"
+
+    def __init__(self, name: str, blurb: str, description: str, image_path: str, scores: dict):
 
         self.name = name 
+        self.blurb = blurb
         self.description = description
         self.image_path = image_path
         self.scores = scores
 
     def euclidean_distance(self, assessment_scores:dict):
         # accepts another dictionary of scores and returns the euclidean distance
-        return sum(
+        squared_diffs = [
             (self.scores[key] - assessment_scores[key]) ** 2 
             for key in self.scores.keys()
-        )
+        ]
+
+        return math.sqrt(sum(squared_diffs))
     
 class PersonalityPicker:
 
@@ -28,4 +36,4 @@ class PersonalityPicker:
             for personality in self.personaliities
         ]
 
-        return sorted(results, key=lambda personality: personality['distance'], reverse=True)[0]
+        return sorted(results, key=lambda personality: personality['distance'], reverse=False)[0]

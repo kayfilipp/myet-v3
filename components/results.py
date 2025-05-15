@@ -1,16 +1,36 @@
 from components import trait_descriptions, score_chart
+from models.Personality import *
 import asyncio 
 import streamlit 
+import json
+
+def get_personality(st, assessment_score):
+
+    if not st.session_state.get('personality_picker'):
+
+        personalities = json.load(open("personalities.json"))['personalities']
+        personalities = [Personality(**personality) for personality in personalities]
+        st.session_state['personality_picker'] = PersonalityPicker(personalities)
+
+    picker : PersonalityPicker = st.session_state['personality_picker']
+    results = assessment_score.results
+
+    return picker.get_personality_match(results)['personality']
+
+
 
 def render(st: streamlit, assessment_score, enable_management=True):
+
+    # PERSONA PICKER 
+    persona : Personality = get_personality(st, assessment_score)
 
     results = assessment_score.results
 
     c = st.columns([2,2.5,2, 8], gap='medium')
     with c[0]:
-        st.subheader("The Worker Bee")
-        st.caption("Hard at work, holding it down.")
-        st.image("./assets/workerbee.png")
+        st.subheader(persona.name)
+        st.caption(persona.description)
+        st.image(persona.image_path)
 
     with c[1]:
         st.subheader("Your Scores")
@@ -26,7 +46,7 @@ def render(st: streamlit, assessment_score, enable_management=True):
 
     with c[0]:
         st.subheader("About You")
-        st.write("A worker bee is someone who thrives on productivity, constantly moving from one task to the next with a strong sense of responsibility. They are diligent, reliable, and often the backbone of any team, ensuring that projects are completed efficiently. While they may not seek the spotlight, their dedication and perseverance make a significant impact, as they take pride in their work and find satisfaction in keeping things running smoothly. Their energy is infectious, inspiring others to stay focused and push forward.")
+        st.write(persona.description)
 
     st.divider()
 

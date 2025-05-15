@@ -1,0 +1,94 @@
+{
+    "personalities": [
+        {
+            "name": "The Founder",
+            "blurb": "Here since day one.",
+            "description": "A founder in a startup environment is a visionary risk-taker, driven by relentless ambition and a deep belief in their ideas. They thrive in uncertainty, making bold decisions and wearing multiple hats to push their venture forward. Adaptability and resilience define them—they embrace setbacks as learning experiences and pivot when necessary. Their passion is infectious, rallying their team around a shared mission, while their resourcefulness helps them navigate obstacles with creative problem-solving. For them, building something from the ground up isn’t just work; it’s a calling.",
+            "image_path": "./assets/founder.png",
+            "scores": {
+                "Extroversion": 8,
+                "Conscientiousness": 1,
+                "Agreeableness": 8,
+                "Honesty-Humility": 1,
+                "Emotionality": 1,
+                "Openness to Experience": 8
+            }
+        },
+
+        {
+            "name": "The Worker Bee",
+            "blurb": "Holding down the fort.",
+            "description": "A worker bee is someone who thrives on productivity, constantly moving from one task to the next with a strong sense of responsibility. They are diligent, reliable, and often the backbone of any team, ensuring that projects are completed efficiently. While they may not seek the spotlight, their dedication and perseverance make a significant impact, as they take pride in their work and find satisfaction in keeping things running smoothly. Their energy is infectious, inspiring others to stay focused and push forward.",
+            "image_path": "./assets/workerbee.png",
+            "scores": {
+                "Extroversion": 1,
+                "Conscientiousness": 8,
+                "Agreeableness": 1,
+                "Honesty-Humility": 1,
+                "Emotionality": 8,
+                "Openness to Experience": 1
+            }
+        },
+
+        {
+            "name": "Product Developer",
+            "blurb": "Make stuff, break stuff.",
+            "description": "A product developer is an innovator who bridges creativity and functionality, turning concepts into tangible solutions that meet user needs. They blend technical expertise with market awareness, refining ideas through research, prototyping, and iteration. Collaboration is key, as they work closely with designers, engineers, and stakeholders to ensure their vision aligns with practicality. Their drive to enhance user experiences fuels continuous improvement, making them essential in shaping groundbreaking products that resonate in an ever-evolving landscape.",
+            "image_path": "./assets/productdeveloper.png",
+            "scores": {
+                "Extroversion": 1,
+                "Conscientiousness": 1,
+                "Agreeableness": 8,
+                "Honesty-Humility": 1,
+                "Emotionality": 1,
+                "Openness to Experience": 8
+            }
+        },
+
+        {
+            "name": "The People Person",
+            "blurb": "Great friend, even better manager.",
+            "description": "A great people manager and friend is the heart of any team, creating an environment where individuals feel valued, heard, and empowered. They build trust through empathy and clear communication, ensuring challenges are met with collaboration rather than conflict. Their adaptability allows them to balance structure with flexibility, keeping morale high even in demanding situations. By fostering growth and connection, they transform work into a space of inspiration and mutual support, making every person feel like a vital part of something greater.",
+            "image_path": "./assets/productdeveloper.png",
+            "scores": {
+                "Extroversion": 8,
+                "Conscientiousness": 8,
+                "Agreeableness": 1,
+                "Honesty-Humility": 8,
+                "Emotionality": 8,
+                "Openness to Experience": 1
+            }
+        },
+
+        {
+            "name": "The Taskmaster",
+            "blurb": "Endless drive and obsession.",
+            "description": "Deeply focused and best in structured environments, approaching tasks with precision and dedication. Their ability to process details methodically allows them to excel in problem-solving, often spotting patterns and solutions others might overlook. Routine and predictability bring a sense of comfort, enabling them to navigate challenges with confidence. While they may prefer direct and clear communication, their unique perspective adds valuable depth to any team, making them a reliable and insightful contributor.",
+            "image_path": "./assets/taskmaster.png",
+            "scores": {
+                "Extroversion": 1,
+                "Conscientiousness": 8,
+                "Agreeableness": 1,
+                "Honesty-Humility": 8,
+                "Emotionality": 1,
+                "Openness to Experience": 1
+            }
+        },
+
+        {
+            "name": "The Risk Taker",
+            "blurb": "Boldly going forward, no matter what.",
+            "description": "An adventurous risk taker in a team is the catalyst for bold ideas and uncharted opportunities. They thrive on pushing boundaries, challenging the status quo, and embracing uncertainty with confidence. Their fearless approach to problem-solving inspires others to step outside their comfort zones, creating an environment of innovation and adaptability. While they take calculated risks, their enthusiasm and resilience make them a driving force, keeping the team energized and motivated to tackle even the most ambitious challenges.",
+            "image_path": "./assets/risktaker.png",
+            "scores": {
+                "Extroversion": 1,
+                "Conscientiousness": 1,
+                "Agreeableness": 8,
+                "Honesty-Humility": 1,
+                "Emotionality": 8,
+                "Openness to Experience": 8
+            }
+        }
+
+    ]
+}
